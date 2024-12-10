@@ -11,10 +11,9 @@ class Admin extends Authenticatable
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'admins';
+    protected $table = 'admin';
 
     protected $fillable = [
-
         'nama',
         'alamat',
         'np_hp',

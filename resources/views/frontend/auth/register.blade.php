@@ -1,72 +1,133 @@
 @extends('frontend.layout.app')
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/frontend/page-auth.css') }}" />
+@endpush
 @section('content')
-<!-- Main Content -->
-<main class="main-content mt-0">
-    <section>
-        <div class="page-header min-vh-100">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="card shadow-lg border-0">
-                            <div class="card-header text-center">
-                                <h4 class="fw-bold">Form Registrasi Pasien</h4>
-                                <p>Lengkapi data berikut untuk registrasi</p>
+<div class="container-xxl mt-5">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner">
+            <!-- Register -->
+            <div class="card">
+                <div class="card-body">
+                    <!-- Logo -->
+                    <div class="app-brand justify-content-center">
+                        <a href="index.html" class="app-brand-link gap-2">
+                            <span class="app-brand-logo demo">
+                                <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs>
+                      
+                                    </defs>
+                                </svg>
+                            </span>
+                            <span class="app-brand-text demo text-body fw-bolder">Poli</span>
+                        </a>
+                    </div>
+                    <!-- /Logo -->
+                    <h4 class="mb-2">Registrasi Akun</h4>
+                    <p class="mb-4">Silahkan isi formulir dibawah ini dengan benar 👋</p>
+                    <form id="formAuthentication" class="mb-3" action="{{ route('register') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <label for="nama" class="form-label">Nama</label>
+                                <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Masukkan nama lengkap" required />
+                                @error('nama')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <div class="card-body">
-                                <form action="{{ route('register') }}" method="POST">
-                                    @csrf
-                                    <!-- Nama Pasien -->
-                                    <div class="mb-3">
-                                        <label for="nama_pasien" class="form-label">Nama Pasien</label>
-                                        <input type="text" class="form-control" id="nama_pasien" name="nama_pasien" placeholder="Nama Lengkap" required>
-                                    </div>
-                                    <!-- Password -->
-                                    <div class="mb-3 position-relative">
-                                        <label for="password" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-                                        <span class="position-absolute top-50 end-0 translate-middle-y me-3" style="cursor: pointer;" id="togglePassword">
-                                            <i class="bi bi-eye-slash"></i>
+
+                            <div class="col-12 mb-3">
+                                <label for="alamat" class="form-label">Alamat</label>
+                                <textarea class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat" placeholder="Masukkan alamat lengkap"  rows="3" required></textarea>
+                                @error('alamat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <label for="no_ktp" class="form-label">Nomor KTP</label>
+                                <input
+                                    type="text"
+                                    class="form-control @error('no_ktp') is-invalid @enderror"
+                                    id="no_ktp"
+                                    name="no_ktp"
+                                    placeholder="Masukkan nomor KTP"
+                                    required
+                                />
+                                @error('no_ktp')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <label for="no_hp" class="form-label">Nomor Telepon</label>
+                                <input
+                                    type="text"
+                                    class="form-control @error('no_hp') is-invalid @enderror"
+                                    id="no_hp"
+                                    name="no_hp"
+                                    placeholder="Masukkan nomor telepon"
+                                    required
+                                />
+                                @error('no_hp')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col-12 mb-3 form-password-toggle">
+                                <div class="d-flex justify-content-between">
+                                    <label for="password" class="form-label">Password</label>
+                                    <a href="auth-forgot-password-basic.html">
+                                        <small>Lupa Password?</small>
+                                    </a>
+                                </div>
+                                <div class="input-group input-group-merge">
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        class="form-control @error('password') is-invalid @enderror"
+                                        name="password"
+                                        placeholder="Masukkan password"
+                                        aria-describedby="password"
+                                        required
+                                    />
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    </div>
-                                    <!-- No HP -->
-                                    <div class="mb-3">
-                                        <label for="no_hp" class="form-label">No HP</label>
-                                        <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="081234567890" required>
-                                    </div>
-                                    <!-- No KTP -->
-                                    <div class="mb-3">
-                                        <label for="no_ktp" class="form-label">No KTP</label>
-                                        <input type="text" class="form-control" id="no_ktp" name="no_ktp" placeholder="Nomor KTP" required>
-                                    </div>
-                                    <!-- Alamat -->
-                                    <div class="mb-3">
-                                        <label for="alamat" class="form-label">Alamat</label>
-                                        <textarea class="form-control" id="alamat" name="alamat" placeholder="Alamat Lengkap" rows="3" required></textarea>
-                                    </div>
-                                    <!-- Submit Button -->
-                                    <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary">Registrasi</button>
-                                    </div>
-                                </form>
+                                    @enderror
+                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <button class="btn btn-primary d-grid w-100" type="submit">Register</button>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
+            <!-- /Register -->
         </div>
-    </section>
-</main>
-
+    </div>
+</div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
 
         togglePassword.addEventListener('click', function () {
-            const passwordInput = document.getElementById('password');
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-            this.querySelector('i').classList.toggle('bi-eye');
-            this.querySelector('i').classList.toggle('bi-eye-slash');
+            this.querySelector('i').classList.toggle('fa-eye');
+            this.querySelector('i').classList.toggle('fa-eye-slash');
         });
     });
 </script>

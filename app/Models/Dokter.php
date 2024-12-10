@@ -5,11 +5,11 @@ namespace App\Models;
 use App\Models\Poli;
 use App\Models\Dokter;
 use App\Models\JadwalPeriksa;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Dokter extends Model
+class Dokter extends Authenticatable
 {
     use HasFactory, SoftDeletes;
 

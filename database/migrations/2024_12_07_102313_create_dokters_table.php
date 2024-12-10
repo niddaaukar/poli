@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('alamat')->nullable();
             $table->string('no_hp', 15)->unique();
             $table->string('password');
+            $table->foreignId('id_poli')->constrained('poli')->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

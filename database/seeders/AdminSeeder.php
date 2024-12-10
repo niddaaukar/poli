@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
     {
         Admin::create([
 
-            'nama' => 'Nida',
+            'nama' => 'Nida Aulia',
             'alamat' => 'Comal',
             'no_hp' => '089619636519',
             'password' => Hash::make('NidaAuliaK13'),

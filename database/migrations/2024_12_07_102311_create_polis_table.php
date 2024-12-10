@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_poli', 25);
             $table->text('keterangan')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

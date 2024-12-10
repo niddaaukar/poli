@@ -5,12 +5,12 @@ namespace App\Models;
 use App\Models\Obat;
 use App\Models\DetailPeriksa;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Obat extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $table = 'obat';
     protected $fillable = ['nama_obat', 'kemasan', 'harga'];

@@ -23,6 +23,7 @@
   <link href="{{asset('css/frontend/aos.css') }}" rel="stylesheet">
   <link href="{{asset('css/frontend/glightbox.min.css') }}"rel="stylesheet">
   <link href="{{asset('css/frontend/swiper-bundle.min.css') }} "rel="stylesheet">
+  
 
   <!-- Main CSS File -->
   <link href="{{asset('css/frontend/main.css') }} " rel="stylesheet">
@@ -30,12 +31,15 @@
 </head>
 <body>
     @yield('content')
+    @include('components.sweetalert')
     <script src="{{asset('js/main/bootstrap.bundle.min.js') }} "></script>
   <script src="{{asset('js/main/validate.js') }} "></script>
   <script src="{{asset('js/main/aos.js') }} "></script>
   <script src="{{asset('js/main/glightbox.min.js') }} "></script>
   <script src="{{asset('js/main/swiper-bundle.min.js') }} "></script>
   <script src="{{asset('js/main/purecounter_vanilla.js') }} "></script>
+  <script src="{{asset('js/main/fontawesome.js') }} "></script>
+  <script src="{{asset('js/main/javascript.js') }}"></script>
 
   <!-- Main JS File -->
   <script src="{{asset('js/main/main.js') }} "></script>

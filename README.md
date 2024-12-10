@@ -1,66 +1,77 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Website Temu Janji Poli Udinus
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Website Temu Janji Poli Udinus adalah aplikasi berbasis web yang memungkinkan pengguna untuk melakukan pendaftaran dan pengaturan jadwal kunjungan  poli di Universitas Dian Nuswantoro (Udinus). Website ini ditujukan untuk mempermudah pasien atau pengguna dalam memilih waktu kunjungan sesuai dengan kebutuhan mereka dan menghindari antrian yang panjang di rumah sakit atau klinik.
 
-## About Laravel
+## Fitur Website 
+- **Login sebagai Admin**: Admin dapat mengelola dan memantau seluruh aktivitas aplikasi.
+- **Mengelola Dokter**: Admin dapat menambah, mengedit, atau menghapus data dokter yang terdaftar di sistem.
+- **Mengelola Pasien**: Admin dapat mengelola data pasien yang terdaftar, termasuk melakukan pencarian dan pembaruan data pasien.
+- **Mengelola Poli**: Admin dapat mengelola jadwal dan data poli yang tersedia di rumah sakit atau klinik.
+- **Mengelola Obat**: Admin dapat mengelola data obat yang digunakan untuk pengobatan pasien.
+- **Pendaftaran Pasien**: Pasien dapat melakukan pendaftaran secara online untuk mendapatkan layanan medis.
+- **Login sebagai Pasien**: Pasien dapat masuk untuk mengakses data diri dan jadwal kunjungan mereka.
+- **Mendaftar ke Poli**: Pasien dapat memilih poli yang diinginkan dan melakukan pendaftaran untuk konsultasi atau pemeriksaan.
+- **Login sebagai Dokter**: Dokter dapat masuk untuk mengakses jadwal periksa dan data pasien yang akan diperiksa.
+- **Memperbaharui Data Dokter**: Dokter dapat memperbarui data diri mereka, termasuk jadwal dan informasi terkait.
+- **Input Jadwal Periksa**: Dokter dapat menginput jadwal pemeriksaan yang akan mereka lakukan untuk pasien.
+- **Memeriksa Pasien**: Dokter dapat memeriksa pasien sesuai dengan jadwal yang telah ditentukan dan memberikan diagnosa serta perawatan yang diperlukan.
+- **Menghitung Biaya Periksa**: Dokter dapat menghitung biaya periksa berdasarkan layanan yang diberikan selama pemeriksaan.
+- **Memberikan Catatan Obat**: Dokter dapat memberikan resep obat kepada pasien setelah pemeriksaan.
+- **Menampilkan Riwayat Pasien**: Dokter dapat melihat riwayat kesehatan dan pemeriksaan pasien sebelumnya.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Teknologi yang Digunakan
+- **Frontend**: HTML, CSS, JavaScript, Bootstrap 5
+- **Backend**: PHP 
+- **Database**: MySQL
+- **Framework**: Laravel 11, 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Persyaratan Sistem
+- PHP >= 8.1
+- Composer
+- MySQL
+- Node.js dan npm (untuk pengelolaan frontend)
+- Laravel 11
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Instalasi dan Menjalankan Proyek
+1. Clone Repository : https://github.com/niddaaukar/poli.git
+2. Instalasi Dependensi
+- Instal semua dependensi PHP menggunakan Composer:
+perintah :
+composer install
 
-## Learning Laravel
+- Instal semua dependensi frontend menggunakan npm:
+perintah
+npm install
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. Pengaturan .env
+Salin file .env.example menjadi file .env dan lakukan pengaturan sesuai dengan konfigurasi lingkungan yang anda gunakan
+perintah : 
+cp .env.example .env
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Kemudian, buka file .env dan sesuaikan konfigurasi database, mail, dan lainnya sesuai kebutuhan Anda.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+4. Generate Key Aplikasi
+Jalankan perintah untuk menghasilkan aplikasi key Laravel:
+perintah : 
+php artisan key:generate
 
-## Laravel Sponsors
+5. Migrasi dan Seeder Database
+Jalankan migrasi dan seeding database untuk menyiapkan tabel dan data awal:
+perintah : 
+php artisan migrate --seed
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+6. Menjalankan Server
+Setelah semuanya terinstal dan terkonfigurasi, jalankan server pengembangan Laravel menggunakan perintah berikut:
+perintah : 
+php artisan serve
 
-### Premium Partners
+# Berikut adalah struktur direktori utama dalam proyek ini:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+├── app/               # Kode aplikasi utama
+├── bootstrap/         # File konfigurasi bootstrap
+├── config/            # File konfigurasi aplikasi
+├── database/          # Migrasi dan seeder database
+├── public/            # Berkas yang dapat diakses publik (gambar, js, css, dll.)
+├── resources/         # Sumber daya tampilan (views, bahasa, dll.)
+├── routes/            # Rute aplikasi
+├── storage/           # File-file yang disimpan secara sementara

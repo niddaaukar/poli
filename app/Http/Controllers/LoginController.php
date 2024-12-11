@@ -41,7 +41,7 @@ class LoginController extends Controller
         $dokter = Dokter::where('no_hp', $no_hp)->first();
         if ($dokter && Hash::check($password, $dokter->password)) {
             Auth::guard('dokter')->login($dokter); // Gunakan guard dokter
-            return redirect()->route('homepage')
+            return redirect()->route('dokter.dashboard')
                 ->with([
                     'message' => 'Selamat datang di Dashboard Dokter!',
                     'alert-type' => 'success'

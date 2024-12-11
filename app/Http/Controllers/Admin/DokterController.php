@@ -35,6 +35,7 @@ class DokterController extends Controller
     
     public function store(Request $request)
     {
+        // dd($request->all());
         // Validasi input dari user
         $request->validate([
             'nama' => 'required|string|max:255',

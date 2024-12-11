@@ -77,7 +77,7 @@
             </li>
             <!-- Dokter -->
             <li class="menu-item ">
-            <li class="menu-item {{ Request::routeIs('admin.dokter.index') ? 'active' : '' }}">
+            <li class="menu-item {{ Request::routeIs('admin.dokter.*') ? 'active' : '' }}">
               <a href="{{ route('admin.dokter.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dokter</div>
@@ -85,7 +85,7 @@
             </li>
               <!-- Pasien -->
               <li class="menu-item">
-              <li class="menu-item {{ Request::routeIs('admin.pasien.index') ? 'active' : '' }}">
+              <li class="menu-item {{ Request::routeIs('admin.pasien.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.pasien.index') }}" class="menu-link">
                       <i class="menu-icon tf-icons bx bx-user-circle"></i>
                       <div data-i18n="Pasien">Pasien</div>
@@ -94,7 +94,7 @@
             <!-- End Pasien -->
              <!-- Obat -->
             <li class="menu-item">
-            <li class="menu-item {{ Request::routeIs('admin.obat.index') ? 'active' : '' }}">
+            <li class="menu-item {{ Request::routeIs('admin.obat.*') ? 'active' : '' }}">
             <a href="{{ route('admin.obat.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Obat</div>
@@ -103,7 +103,7 @@
             <!-- End obat -->
               <!-- Poli -->
             <li class="menu-item">
-            <li class="menu-item {{ Request::routeIs('admin.poli.index') ? 'active' : '' }}">
+            <li class="menu-item {{ Request::routeIs('admin.poli.*') ? 'active' : '' }}">
             <a href="{{ route('admin.poli.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Poli</div>

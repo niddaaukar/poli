@@ -19,13 +19,12 @@
                     <td>{{ $poli->nama_poli }}</td>
                     <td>{{ $poli->keterangan }}</td>
                     <td>
-                    <a href="{{ route('admin.poli.edit', $poli->id) }}" class="btn btn-warning btn-sm">Edit</a>
-<form action="{{ route('admin.poli.destroy', $poli->id) }}" method="POST" class="delete-form" style="display:inline;">
-    @csrf
-    @method('DELETE')
-    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-</form>
-
+                    <a href="{{ route('admin.poli.edit', $poli->id) }}" class="btn btn-warning btn-sm"> <i class="fas fa-edit me-1"></i>Edit</a>
+                    <form action="{{ route('admin.poli.destroy', $poli->id) }}" method="POST" class="delete-form" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt me-1"></i>Hapus</button>
+                    </form>
                     </td>
                 </tr>
             @endforeach

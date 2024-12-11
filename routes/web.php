@@ -73,7 +73,7 @@ Route::middleware(['auth:admin'])->group(function () {
     });
 });
 
-Route::middleware(['auth:admin'])->group(function () {
+Route::middleware(['auth:dokter'])->group(function () {
 
     // Dokter Dashboard 
     Route::get('/dokter/dashboard', [DokterDashboardController::class, 'index'])->name('dokter.dashboard');

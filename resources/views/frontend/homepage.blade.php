@@ -212,7 +212,7 @@
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-card d-flex">
               <div class="icon flex-shrink-0">
-                <i class="bi bi-activity"></i>
+              <i class="fa-solid fa-pills"></i>
               </div>
               <div>
                 <h3>Poli Umum</h3>
@@ -225,7 +225,7 @@
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-card d-flex">
               <div class="icon flex-shrink-0">
-                <i class="bi bi-diagram-3"></i>
+              <i class="fa-solid fa-stethoscope"></i>
               </div>
               <div>
                 <h3>Poli Spesialis</h3>

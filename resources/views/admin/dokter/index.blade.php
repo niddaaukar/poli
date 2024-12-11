@@ -9,7 +9,8 @@
             {{ session('success') }}
         </div>
     @endif
-    <table class="table table-striped table-bordered"> 
+   
+    <table class="table table-striped table-bordered" id="data-table" class="table table-hover table-responsive align-items-center align-middle w-100"> 
         <thead>
             <tr>
                 <th>Nama</th>
@@ -25,7 +26,7 @@
                 <td>{{ $dokter->nama }}</td>
                 <td>{{ $dokter->alamat }}</td>
                 <td>{{ $dokter->no_hp }}</td>
-                <td>{{ $dokter->poli->nama ?? 'Tidak ada' }}</td>
+                <td>{{ $dokter->poli->nama_poli ?? 'Tidak ada' }}</td>
                 <td>
                     <div class="d-flex justify-content-start align-items-center">
                         <a href="{{ route('admin.dokter.edit', $dokter->id) }}" class="btn btn-warning btn-sm d-flex align-items-center me-2">
@@ -48,6 +49,7 @@
     </table>
 </div>
 @endsection
+
 @push('scripts')
     <script>
         // Menangani submit form dengan kelas 'delete-form'
@@ -58,3 +60,4 @@
         });
     </script>
 @endpush
+@include('admin.layout.datatable')

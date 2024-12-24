@@ -21,7 +21,7 @@
     </script>
     <style>
         .custom-ok-button {
-            background-color: #1E9781;
+            background-color: #3D3BF3;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -30,7 +30,7 @@
         }
 
         .custom-ok-button:hover {
-            background-color: #1E9781;
+            background-color: #FAB12F;
         }
     </style>
 @endif

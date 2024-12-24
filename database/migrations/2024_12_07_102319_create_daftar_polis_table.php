@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('daftar_poli', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_pasien');
-            $table->unsignedBigInteger('id_jadwal');
-            $table->text('keluhan')->nullable();
-            $table->integer('no_antrian');
+            $table->foreignId('id_pasien')->constrained('pasien')->cascadeOnDelete();
+            $table->foreignId('id_jadwal')->constrained('jadwal_periksa')->cascadeOnDelete();
+            $table->date('tgl_periksa');
+            $table->text('keluhan');
+            $table->integer('no_antrian')->nullable()->default(0);
+            $table->softDeletes();
             $table->timestamps();
-            $table->foreign('id_pasien')->references('id')->on('pasien')->onDelete('cascade');
-            $table->foreign('id_jadwal')->references('id')->on('jadwal_periksa')->onDelete('cascade');
         });
     }
 

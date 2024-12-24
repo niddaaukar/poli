@@ -24,7 +24,6 @@
   <link href="{{asset('css/frontend/glightbox.min.css') }}"rel="stylesheet">
   <link href="{{asset('css/frontend/swiper-bundle.min.css') }} "rel="stylesheet">
   
-
   <!-- Main CSS File -->
   <link href="{{asset('css/frontend/main.css') }} " rel="stylesheet">
   @stack('styles')

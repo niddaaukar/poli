@@ -65,6 +65,14 @@ Setelah semuanya terinstal dan terkonfigurasi, jalankan server pengembangan Lara
 perintah : 
 php artisan serve
 
+# Informasi Login
+
+Gunakan data berikut untuk mengakses aplikasi sesuai dengan peran:
+
+1. Admin -> No HP: 089619636519 dan Password: NidaAuliaK13
+2. Dokter -> No HP: 083862052204 dan Password: 12345678
+3. Pasien -> No HP: 084668354734 dan Password: 12345678
+
 # Berikut adalah struktur direktori utama dalam proyek ini:
 
 ├── app/               # Kode aplikasi utama

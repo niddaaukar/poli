@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_periksa');
             $table->unsignedBigInteger('id_obat');
-            $table->timestamps();
             $table->foreign('id_periksa')->references('id')->on('periksa')->onDelete('cascade');
             $table->foreign('id_obat')->references('id')->on('obat')->onDelete('cascade');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

@@ -17,8 +17,9 @@ return new class extends Migration
             $table->date('tgl_periksa');
             $table->text('catatan')->nullable();
             $table->integer('biaya_periksa');
-            $table->timestamps();
             $table->foreign('id_daftar_poli')->references('id')->on('daftar_poli')->onDelete('cascade');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

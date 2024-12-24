@@ -2,23 +2,26 @@
 <header id="header" class="header d-flex align-items-center fixed-top bg-light shadow-sm">
   <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
     <!-- Logo -->
-    <a href="index.html" class="logo d-flex align-items-center">
-      <h1 class="sitename text-primary fw-bold">Poliklinik</h1>
-    </a>
+    <a href="{{ url('/') }}" class="logo d-flex align-items-center">
+    <img src="{{ asset('img/logo-poli.png') }}" alt="Logo Poliklinik" class="me-2">
+    <h1 class="sitename fw-bold">
+        <span class="text-primary">POLI</span><span class="text-warning"> Klinik</span>
+    </h1>
+</a>
     <!-- Navigation Menu -->
     <nav id="navmenu" class="navmenu d-flex align-items-center">
       <ul class="nav d-flex align-items-center">
         <li class="nav-item">
-          <a href="#hero" class="nav-link text-primary fw-bold active">Beranda</a>
+          <a href="#hero" class="nav-link {{ Request::is('homepage') ? 'active' : '' }}">Beranda</a>
         </li>
-        <li class="nav-item">
-          <a href="#about" class="nav-link text-dark">Tentang Kami</a>
+        <li class="nav-item me-3">
+            <a class="nav-link {{ Request::is('tentang-kami') ? 'active' : '' }}" href="#tentang-kami">Tentang Kami</a>
         </li>
-        <li class="nav-item">
-          <a href="#services" class="nav-link text-dark">Layanan</a>
+        <li class="nav-item me-3">
+            <a class="nav-link {{ Request::is('layanan') ? 'active' : '' }}" href="#layanan">Layanan</a>
         </li>
-        <li class="nav-item">
-          <a href="#contact" class="nav-link text-dark">Kontak Kami</a>
+        <li class="nav-item me-3">
+            <a class="nav-link {{ Request::is('kontak-kami') ? 'active' : '' }}" href="#kontak-kami">FAQ</a>
         </li>
       </ul>
     </nav>
@@ -34,8 +37,8 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
             @if (Auth::guard('pasien')->check())
-              <li><a class="dropdown-item" href="">Profil</a></li>
-              <li><a class="dropdown-item" href="">Riwayat Periksa</a></li>
+              <li><a class="dropdown-item" href="{{ route('pasien.profil.index') }}">Profil</a></li>
+              <li><a class="dropdown-item" href="{{ route('pasien.riwayat.index') }}">Riwayat Periksa</a></li>
             @elseif (Auth::guard('dokter')->check())
               <li><a class="dropdown-item" href="{{ route('dokter.dashboard') }}">Dashboard</a></li>
             @elseif (Auth::guard('admin')->check())
@@ -50,7 +53,7 @@
           </ul>
         </div>
       @else
-        <a href="{{ route('register') }}" class="btn btn-primary shadow-sm mx-2">Daftar Sebagai Pasien</a>
+        <a href="{{ route('register') }}" class="btn btn-primary shadow-sm mx-2">Registrasi</a>
         <a href="{{ route('login') }}" class="btn btn-warning shadow-sm">Login</a>
       @endif
     </div>

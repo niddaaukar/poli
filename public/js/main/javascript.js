@@ -13,3 +13,16 @@ function confirmDelete(form) {
         }
     });
 }
+
+function togglePassword(element) {
+    const $input = $(element).closest(".input-group").find("input");
+    const $icon = $(element).find("i");
+
+    if ($input.attr("type") === "password") {
+        $input.attr("type", "text");
+        $icon.removeClass("fa-eye-slash").addClass("fa-eye");
+    } else {
+        $input.attr("type", "password");
+        $icon.removeClass("fa-eye").addClass("fa-eye-slash");
+    }
+}

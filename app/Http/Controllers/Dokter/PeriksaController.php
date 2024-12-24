@@ -3,65 +3,92 @@
 namespace App\Http\Controllers\Dokter;
 
 use App\Http\Controllers\Controller;
-use App\Models\Periksa;
 use App\Models\DaftarPoli;
+use App\Models\DetailPeriksa;
+use App\Models\Obat;
+use App\Models\Periksa;
 use Illuminate\Http\Request;
 
 class PeriksaController extends Controller
 {
+    //
     public function index()
     {
-        $periksas = Periksa::with('daftarPoli.pasien')->paginate(10);
-        return view('dokter.periksa.index', compact('periksas'));
+        $dokter = auth()->guard('dokter')->user();
+        $jadwalId = $dokter->jadwalPeriksa->pluck('id');
+        $daftarPolis = DaftarPoli::whereIn('id_jadwal', $jadwalId)
+            ->with('periksa') // Load relasi periksa
+            ->get();
+
+        return view('dokter.periksa.index', compact('daftarPolis'));
     }
 
-    public function create()
+    public function detail($id)
     {
-        $daftarPolis = DaftarPoli::all();
-        return view('dokter.periksa.create', compact('daftarPolis'));
+        $dokter = auth()->guard('dokter')->user();
+        $daftarpoli = DaftarPoli::with('jadwalPeriksa')->findOrFail($id);
+
+        if ($daftarpoli->jadwalPeriksa->dokter->id != $dokter->id) {
+            return redirect()->back()->with([
+                'message' => 'Data tidak ditemukan',
+                'alert-type' => 'error',
+            ]);
+        }
+
+        $obats = Obat::all();
+        $periksa = Periksa::where('id_daftar_poli', $id)->first();
+
+        // Ambil daftar obat jika ada data periksa, jika tidak kosongkan array
+        $daftarObat = $periksa
+            ? DetailPeriksa::where('id_periksa', $periksa->id)->pluck('id_obat')->toArray()
+            : [];
+
+        return view('dokter.periksa.detail', compact('daftarpoli', 'obats', 'periksa', 'daftarObat'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $validated = $request->validate([
-            'id_daftar_poli' => 'required|exists:daftar_polis,id',
-            'tgl_periksa' => 'required|date',
-            'catatan' => 'nullable|string',
-            'biaya_periksa' => 'required|numeric',
+        $request->validate([
+            'catatan' => 'required',
+            'obat' => 'required|array|min:1',
         ]);
 
-        Periksa::create($validated);
+        // Cari data DaftarPoli
+        $daftarpoli = DaftarPoli::findOrFail($id);
 
-        return redirect()->route('dokter.periksa.index')->with('success', 'Data pemeriksaan berhasil ditambahkan.');
-    }
+        // Ambil semua obat berdasarkan ID yang dipilih
+        $obats = Obat::whereNull('deleted_at')->whereIn('id', $request->obat)->get();
 
-    public function edit($id)
-    {
-        $periksa = Periksa::findOrFail($id);
-        $daftarPolis = DaftarPoli::all();
-        return view('dokter.periksa.edit', compact('periksa', 'daftarPolis'));
-    }
+        // Hitung total biaya
+        $biaya = 150000;
+        foreach ($obats as $obat) {
+            $biaya += $obat->harga;
+        }
 
-    public function update(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'id_daftar_poli' => 'required|exists:daftar_polis,id',
-            'tgl_periksa' => 'required|date',
-            'catatan' => 'nullable|string',
-            'biaya_periksa' => 'required|numeric',
+        // Cari data periksa yang sudah ada atau buat data baru
+        $periksa = Periksa::updateOrCreate(
+            ['id_daftar_poli' => $daftarpoli->id],
+            [
+                'tgl_periksa' => $daftarpoli->tgl_periksa,
+                'catatan' => $request->catatan,
+                'biaya_periksa' => $biaya
+            ]
+        );
+
+        // Hapus semua detail periksa sebelumnya untuk data periksa ini
+        $periksa->detailPeriksa()->delete();
+
+        // Tambahkan data detail periksa baru
+        foreach ($obats as $obat) {
+            DetailPeriksa::create([
+                'id_periksa' => $periksa->id,
+                'id_obat' => $obat->id,
+            ]);
+        }
+
+        return redirect()->route('dokter.periksa.index')->with([
+            'message' => 'Periksa berhasil disimpan!',
+            'alert-type' => 'success',
         ]);
-
-        $periksa = Periksa::findOrFail($id);
-        $periksa->update($validated);
-
-        return redirect()->route('dokter.periksa.index')->with('success', 'Data pemeriksaan berhasil diperbarui.');
-    }
-
-    public function destroy($id)
-    {
-        $periksa = Periksa::findOrFail($id);
-        $periksa->delete();
-
-        return redirect()->route('dokter.periksa.index')->with('success', 'Data pemeriksaan berhasil dihapus.');
     }
 }

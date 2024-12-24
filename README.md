@@ -32,6 +32,14 @@ Website Temu Janji Poli Udinus adalah aplikasi berbasis web yang memungkinkan pe
 - Node.js dan npm (untuk pengelolaan frontend)
 - Laravel 11
 
+# Informasi Login
+
+Gunakan data berikut untuk mengakses aplikasi sesuai dengan peran:
+
+1. Admin -> No HP: 089619636519 dan Password: NidaAuliaK13
+2. Dokter -> No HP: 083862052204 dan Password: 12345678
+3. Pasien -> No HP: 084668354734 dan Password: 12345678
+
 ## Instalasi dan Menjalankan Proyek
 1. Clone Repository : https://github.com/niddaaukar/poli.git
 2. Instalasi Dependensi

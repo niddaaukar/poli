@@ -18,13 +18,10 @@
 <!-- Content wrapper -->
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pengaturan Akun /</span> Profil Dokter</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Managemen Akun /</span> Profil Dokter</h4>
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav nav-pills flex-column flex-md-row mb-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('dokter.profil.index') }}">Kembali</a>
-                    </li>
                 </ul>
 
                 <!-- Profil Dokter -->

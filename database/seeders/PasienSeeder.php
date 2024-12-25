@@ -22,7 +22,7 @@ class PasienSeeder extends Seeder
         $faker = Faker::create($fakerLocale);
 
         // Tentukan jumlah data pasien yang akan dibuat
-        $jumlahPasien = 15;
+        $jumlahPasien = 20;
 
         for ($i = 1; $i <= $jumlahPasien; $i++) {
             // Ambil tahun dan bulan saat ini

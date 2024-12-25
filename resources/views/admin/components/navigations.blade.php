@@ -71,24 +71,30 @@
             <li class="menu-item">
             <li class="menu-item {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}">
               <a href="{{ route('admin.dashboard') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-house"></i>
+                    <div>Dashboard</div>
+                </div>
               </a>
             </li>
             <!-- Dokter -->
             <li class="menu-item ">
             <li class="menu-item {{ Request::routeIs('admin.dokter.*') ? 'active' : '' }}">
               <a href="{{ route('admin.dokter.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dokter</div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-user-doctor"></i>
+                    <div>Dokter</div>
+                </div>
               </a>
             </li>
               <!-- Pasien -->
               <li class="menu-item">
               <li class="menu-item {{ Request::routeIs('admin.pasien.*') ? 'active' : '' }}">
                   <a href="{{ route('admin.pasien.index') }}" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                      <div data-i18n="Pasien">Pasien</div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                  <i class="fa-solid fa-user-group"></i>
+                    <div>Pasien</div>
+                </div>
                   </a>
               </li>
             <!-- End Pasien -->
@@ -96,8 +102,10 @@
             <li class="menu-item">
             <li class="menu-item {{ Request::routeIs('admin.obat.*') ? 'active' : '' }}">
             <a href="{{ route('admin.obat.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Obat</div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-pills"></i>
+                    <div>Obat</div>
+                </div>
               </a>
             </li>
             <!-- End obat -->
@@ -105,19 +113,37 @@
             <li class="menu-item">
             <li class="menu-item {{ Request::routeIs('admin.poli.*') ? 'active' : '' }}">
             <a href="{{ route('admin.poli.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Poli</div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-hospital"></i>
+                    <div>Poli</div>
+                </div>
               </a>
             </li>
             <!-- End Poli -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Manajemen</span></li>
-            <li class="menu-item">
-              <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" >
-                <i class="menu-icon tf-icons bx bx-support"></i>
-                <div data-i18n="Support">Admin</div>
-              </a>
-            </li>
-          </ul>
-        </aside>
-        
-        <!-- / Menu -->
+             <!-- Manajemen Header -->
+        <li class="menu-header text-uppercase small text-muted">
+            <span class="menu-header-text">Manajemen</span>
+        </li>
+        <!-- Profil -->
+        <li class="menu-item {{ Request::routeIs('admin.profil.index') ? 'active' : '' }}">
+            <a href="{{ route('admin.profil.index') }}" class="menu-link">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <div>Profil</div>
+                </div>
+            </a>
+        </li>
+        <!-- Logout -->
+        <li class="menu-item">
+            <a href="{{ route('logout') }}" class="menu-link" onclick="event.preventDefault(); document.getElementById('logout-form-1').submit();">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <div>Logout</div>
+                </div>
+            </a>
+            <form id="logout-form-1" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </li>
+    </ul>
+</aside>

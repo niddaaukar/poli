@@ -10,14 +10,19 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+    /**
+     * Menampilkan form pendaftaran pasien.
+     */
     public function index(){
-        return view('frontend.auth.register');
+        return view('frontend.auth.register'); // Menampilkan form registrasi pasien
     }
 
+    /**
+     * Menyimpan data pasien baru dan melakukan login.
+     */
     public function store(Request $request)
     {
-
-        // Validasi input dari form
+        // Validasi input dari form registrasi
         $request->validate([
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
@@ -25,10 +30,11 @@ class RegisterController extends Controller
             'no_ktp' => 'required|numeric|digits:16|unique:pasien',
             'password' => 'required|string|min:8',
         ]);
-        // Generate No RM
+
+        // Generate Nomor Rekam Medis (No RM)
         $no_rm = $this->generateNoRM();
 
-        // Data yang akan disimpan
+        // Data yang akan disimpan ke database
         $createData = [
             'nama' => $request->nama,
             'alamat' => $request->alamat,
@@ -37,16 +43,16 @@ class RegisterController extends Controller
             'no_rm' => $no_rm,
         ];
 
-        // Jika password diisi, hash password dan tambahkan ke data
+        // Jika password diisi, lakukan hash pada password dan tambahkan ke data
         if ($request->filled('password')) {
             $createData['password'] = Hash::make($request->password); // Hash password
         }
 
-        // Menyimpan data pasien baru
+        // Menyimpan data pasien baru ke dalam database
         $pasien = Pasien::create($createData);
 
-        // Autentikasi langsung setelah registrasi
-        Auth::guard('pasien')->login($pasien); // Gunakan guard pasien
+        // Autentikasi langsung setelah registrasi (login otomatis)
+        Auth::guard('pasien')->login($pasien); // Login menggunakan guard pasien
 
         // Redirect ke homepage setelah berhasil login
         return redirect()->route('homepage')
@@ -56,6 +62,9 @@ class RegisterController extends Controller
             ]);
     }
 
+    /**
+     * Generate Nomor Rekam Medis (No RM) berdasarkan tahun, bulan, dan urutan pasien.
+     */
     public function generateNoRM()
     {
         // Ambil tahun dan bulan sekarang
@@ -70,7 +79,7 @@ class RegisterController extends Controller
         // Urutan pasien berikutnya
         $urutan = $jumlah_pasien + 1;
 
-        // Format No RM
+        // Format Nomor Rekam Medis (No RM)
         $no_rm = $tahun . str_pad($bulan, 2, '0', STR_PAD_LEFT) . '-' . $urutan;
 
         return $no_rm;

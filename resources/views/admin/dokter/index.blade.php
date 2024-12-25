@@ -14,6 +14,7 @@
         <table class="table table-striped" id="data-table" class="table table-hover table-responsive align-items-center align-middle w-100"> 
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>Nama</th>
                     <th>Alamat</th>
                     <th>No. HP</th>
@@ -24,6 +25,7 @@
             <tbody>
                 @foreach($dokters as $dokter)
                 <tr>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $dokter->nama }}</td>
                     <td>{{ $dokter->alamat }}</td>
                     <td>{{ $dokter->no_hp }}</td>

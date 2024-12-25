@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Models\Admin;
-use Hash;
 use Auth;
+use Hash;
+use App\Models\Admin;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class AdminProfileController extends Controller
+class ProfileController extends Controller
 {
     // Method untuk menampilkan halaman profil admin
     public function index()
@@ -40,7 +41,11 @@ class AdminProfileController extends Controller
         ]);
 
         // Mengarahkan kembali ke halaman profil dengan pesan sukses
-        return redirect()->route('admin.profil')->with('success', 'Profil berhasil diperbarui!');
+        return redirect()->route('admin.profil.index')
+        ->with([
+            'message' => 'Profil berhasil diubah!', // Pesan sukses setelah berhasil update
+            'alert-type' => 'success', // Jenis pesan yang ditampilkan (success)
+        ]);
     }
 
     // Method untuk mengupdate password admin
@@ -58,7 +63,7 @@ class AdminProfileController extends Controller
         // Memeriksa apakah password yang dimasukkan cocok dengan password saat ini
         if (!Hash::check($request->current_password, $admin->password)) {
             // Jika password saat ini tidak cocok, kembalikan dengan error
-            return redirect()->route('admin.profil')->withErrors(['current_password' => 'Password saat ini salah']);
+            return redirect()->route('admin.profil.index')->withErrors(['current_password' => 'Password saat ini salah']);
         }
 
         // Memperbarui password admin jika password saat ini benar
@@ -67,6 +72,10 @@ class AdminProfileController extends Controller
         ]);
 
         // Mengarahkan kembali ke halaman profil dengan pesan sukses
-        return redirect()->route('admin.profil')->with('success', 'Password berhasil diperbarui!');
+        return redirect()->route('admin.profil.index')
+        ->with([
+            'message' => 'Password berhasil diubah!', // Pesan sukses setelah berhasil update password
+            'alert-type' => 'success', // Jenis pesan yang ditampilkan (success)
+        ]);
     }
 }

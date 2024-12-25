@@ -28,8 +28,9 @@
         <div class="container-fluid py-4">
             @include('components.alert')
             <ul class="nav nav-pills flex-column flex-md-row mb-3">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="{{ route('homepage') }}" >Kembali</a>
+                    <li class="card">
+                      <a class="card-header bg-warning text-white"  href="{{ route('homepage') }}" >
+                      <i class="fa-solid fa-arrow-left"></i> Kembali</a>
                     </li>
                   </ul>
             <div class="row">
@@ -160,9 +161,10 @@
                                                         @else
                                                             <span class="badge bg-danger">Belum Diperiksa</span>
                                                         @endif
-                                                        <a href="{{ route('pasien.riwayat.detail', $riwayat->id) }}" class="btn btn-warning btn-sm d-flex align-items-center me-2">
-                                                        <i class="fas fa-edit me-1"></i>
-                                                        Edit
+                                                        <a href="{{ route('pasien.riwayat.detail', $riwayat->id) }}" class="btn btn-warning btn-sm d-flex align-items-center me-2 ">
+                                                        <i class="fa-solid fa-eye"></i>
+                                                        
+                                                        Lihat
                                                         </a>
                                                     </div>
                                                 </td>

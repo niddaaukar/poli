@@ -12,6 +12,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>No RM</th>
                         <th>Nama</th>
                         <th>No KTP</th>
@@ -21,8 +22,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($pasiens as $pasien)
+                    @forelse($pasiens as $pasien)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $pasien->no_rm }}</td>
                             <td>{{ $pasien->nama }}</td>
                             <td>{{ $pasien->no_ktp }}</td>
@@ -43,7 +45,8 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                        @empty
+                    @endforelse
                 </tbody>
             </table>
         </div>

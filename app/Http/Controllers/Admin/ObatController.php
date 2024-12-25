@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ObatController extends Controller
 {
-    // Method ini digunakan untuk menampilkan seluruh data 'Obat' (medikasi) dari database.
+    // Menampilkan seluruh data 'Obat'  dari database.
     public function index()
     {
         // Mengambil semua data Obat
@@ -17,14 +17,14 @@ class ObatController extends Controller
         return view('admin.obat.index', compact('obats'));
     }
 
-    // Method ini digunakan untuk menampilkan form pembuatan data 'Obat' baru.
+    // Menampilkan form pembuatan data 'Obat' baru.
     public function create()
     {
         // Mengembalikan tampilan form untuk membuat 'Obat' baru
         return view('admin.obat.create');
     }
 
-    // Method ini digunakan untuk menampilkan form edit data 'Obat' berdasarkan ID yang diberikan.
+    // Menampilkan form edit data 'Obat' berdasarkan ID yang diberikan.
     public function edit($id)
     {
         // Mengambil data 'Obat' berdasarkan ID
@@ -33,7 +33,7 @@ class ObatController extends Controller
         return view('admin.obat.edit', compact('obat'));
     }
 
-    // Method ini digunakan untuk menyimpan data 'Obat' baru ke dalam database.
+    // Menyimpan data 'Obat' baru ke dalam database.
     public function store(Request $request)
     {
         // Melakukan validasi terhadap data yang diterima dari request
@@ -50,7 +50,7 @@ class ObatController extends Controller
             'harga' => $request->harga,
         ]);
 
-        // Mengalihkan kembali ke halaman index 'Obat' dengan pesan sukses
+        // Mengalihkan / redirect kembali ke halaman index 'Obat' dengan pesan sukses
         return redirect()->route('admin.obat.index')
             ->with([
                 'message' => 'Obat berhasil ditambahkan!', // Pesan sukses
@@ -58,7 +58,7 @@ class ObatController extends Controller
             ]);
     }
 
-    // Method ini digunakan untuk memperbarui data 'Obat' yang sudah ada di database.
+    // Memperbarui data 'Obat' yang sudah ada di database.
     public function update(Request $request, $id)
     {
         // Melakukan validasi terhadap data yang diterima dari request (sama seperti di method store)
@@ -85,7 +85,7 @@ class ObatController extends Controller
             ]);
     }
 
-    // Method ini digunakan untuk menghapus data 'Obat' dari database.
+    // Menghapus data 'Obat' dari database.
     public function destroy(Obat $obat)
     {
         // Menghapus data 'Obat' dengan menggunakan soft delete

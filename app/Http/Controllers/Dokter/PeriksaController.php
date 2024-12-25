@@ -11,81 +11,103 @@ use Illuminate\Http\Request;
 
 class PeriksaController extends Controller
 {
-    //
+    // Menampilkan daftar poli berdasarkan jadwal yang dimiliki oleh dokter yang sedang login
     public function index()
     {
+        // Mendapatkan data dokter yang sedang login melalui guard 'dokter'
         $dokter = auth()->guard('dokter')->user();
+        
+        // Mengambil ID jadwal periksa dokter tersebut
         $jadwalId = $dokter->jadwalPeriksa->pluck('id');
+        
+        // Mengambil daftar poli berdasarkan jadwal periksa dokter
         $daftarPolis = DaftarPoli::whereIn('id_jadwal', $jadwalId)
-            ->with('periksa') // Load relasi periksa
+            ->with('periksa') // Load relasi periksa untuk mendapatkan data pemeriksaan yang sudah dilakukan
             ->get();
 
+        // Menampilkan halaman dengan daftar poli yang sudah diambil
         return view('dokter.periksa.index', compact('daftarPolis'));
     }
 
+    // Menampilkan detail periksa untuk poli tertentu
     public function detail($id)
     {
+        // Mendapatkan data dokter yang sedang login
         $dokter = auth()->guard('dokter')->user();
+        
+        // Mencari data DaftarPoli berdasarkan ID dan memuat relasi jadwalPeriksa
         $daftarpoli = DaftarPoli::with('jadwalPeriksa')->findOrFail($id);
 
+        // Mengecek apakah jadwal periksa poli tersebut sesuai dengan dokter yang sedang login
         if ($daftarpoli->jadwalPeriksa->dokter->id != $dokter->id) {
+            // Jika dokter yang memeriksa tidak sesuai, redirect dengan pesan error
             return redirect()->back()->with([
                 'message' => 'Data tidak ditemukan',
                 'alert-type' => 'error',
             ]);
         }
 
+        // Mengambil semua data obat
         $obats = Obat::all();
+        
+        // Mencari data periksa yang terkait dengan poli ini
         $periksa = Periksa::where('id_daftar_poli', $id)->first();
 
-        // Ambil daftar obat jika ada data periksa, jika tidak kosongkan array
+        // Jika data periksa ada, ambil daftar obat yang digunakan dalam periksa
+        // Jika tidak ada data periksa, buat array kosong untuk daftar obat
         $daftarObat = $periksa
             ? DetailPeriksa::where('id_periksa', $periksa->id)->pluck('id_obat')->toArray()
             : [];
 
+        // Menampilkan halaman detail periksa dengan data poli, obat, dan periksa
         return view('dokter.periksa.detail', compact('daftarpoli', 'obats', 'periksa', 'daftarObat'));
     }
 
+    // Menyimpan data periksa baru atau memperbarui data periksa yang sudah ada
     public function store(Request $request, $id)
     {
+        // Validasi input dari form untuk memastikan catatan dan obat terpilih
         $request->validate([
-            'catatan' => 'required',
-            'obat' => 'required|array|min:1',
+            'catatan' => 'required', // Catatan wajib diisi
+            'obat' => 'required|array|min:1', // Obat harus dipilih dan minimal 1
         ]);
 
-        // Cari data DaftarPoli
+        // Mencari data DaftarPoli berdasarkan ID yang diterima
         $daftarpoli = DaftarPoli::findOrFail($id);
 
-        // Ambil semua obat berdasarkan ID yang dipilih
+        // Mengambil semua obat yang dipilih berdasarkan ID obat yang diterima dari form
         $obats = Obat::whereNull('deleted_at')->whereIn('id', $request->obat)->get();
 
-        // Hitung total biaya
+        // Menghitung total biaya periksa, dimulai dari biaya dasar
         $biaya = 150000;
+        
+        // Menambahkan biaya obat berdasarkan harga obat yang dipilih
         foreach ($obats as $obat) {
             $biaya += $obat->harga;
         }
 
-        // Cari data periksa yang sudah ada atau buat data baru
+        // Mencari atau membuat data pemeriksaan (Periksa) baru untuk poli ini
         $periksa = Periksa::updateOrCreate(
-            ['id_daftar_poli' => $daftarpoli->id],
+            ['id_daftar_poli' => $daftarpoli->id], // Mencari data periksa yang sesuai
             [
-                'tgl_periksa' => $daftarpoli->tgl_periksa,
-                'catatan' => $request->catatan,
-                'biaya_periksa' => $biaya
+                'tgl_periksa' => $daftarpoli->tgl_periksa, // Mengambil tanggal periksa dari DaftarPoli
+                'catatan' => $request->catatan, // Menyimpan catatan
+                'biaya_periksa' => $biaya // Menyimpan total biaya periksa
             ]
         );
 
-        // Hapus semua detail periksa sebelumnya untuk data periksa ini
+        // Menghapus semua detail periksa sebelumnya untuk periksa ini
         $periksa->detailPeriksa()->delete();
 
-        // Tambahkan data detail periksa baru
+        // Menambahkan detail periksa baru berdasarkan obat yang dipilih
         foreach ($obats as $obat) {
             DetailPeriksa::create([
-                'id_periksa' => $periksa->id,
-                'id_obat' => $obat->id,
+                'id_periksa' => $periksa->id, // Mengaitkan dengan periksa yang baru dibuat
+                'id_obat' => $obat->id, // Menyimpan ID obat yang dipilih
             ]);
         }
 
+        // Redirect ke halaman daftar periksa dengan pesan sukses
         return redirect()->route('dokter.periksa.index')->with([
             'message' => 'Periksa berhasil disimpan!',
             'alert-type' => 'success',

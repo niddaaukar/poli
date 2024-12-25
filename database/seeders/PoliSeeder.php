@@ -13,6 +13,7 @@ class PoliSeeder extends Seeder
      */
     public function run(): void
     {
+         // Mengisi 10 data ke dalam tabel 'poli'
         DB::table('poli')->insert([
             ['nama_poli' => 'Poli Umum', 'keterangan' => 'Pemeriksaan kesehatan dasar untuk segala keluhan medis.'],
             ['nama_poli' => 'Poli Kesehatan Anak', 'keterangan' => 'Fasilitas untuk pemeriksaan dan pengobatan kesehatan anak.'],

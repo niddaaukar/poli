@@ -52,7 +52,6 @@
         <div class="container py-4">
             <div class="card">
                 <!-- Card Header -->
-                
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3 class="mb-0" style="color: #fff;">Detail Periksa</h3>
                     <a href="{{ route('pasien.riwayat.index') }}" class="btn btn-warning shadow-sm text-white">

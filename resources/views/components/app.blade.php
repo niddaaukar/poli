@@ -65,9 +65,7 @@
 
       <!-- Layout container -->
       <div class="layout-page">
-        <!-- Navbar -->
-        @include('admin.components.navbar')
-        <!-- / Navbar -->
+      
 
         <!-- Content wrapper -->
         <div class="content-wrapper">
@@ -94,9 +92,7 @@
 
         <!-- Layout container -->
         <div class="layout-page">
-          <!-- Navbar -->
-          @include('dokter.components.navbar')
-          <!-- / Navbar -->
+         
 
           <!-- Content wrapper -->
           <div class="content-wrapper">

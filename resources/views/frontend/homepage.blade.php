@@ -35,18 +35,7 @@
                     <div class="col-lg-6">
                         <div class="hero-image" data-aos="zoom-out" data-aos-delay="300">
                             <img src="{{ asset('img/home-new.png') }}" alt="Home Image" class="home-image">
-                            <div class="customers-badge">
-                                <div class="customer-avatars">
-                                    <img src="{{ asset('img/avatar-1.webp') }}" alt="Customer 1" class="avatar">
-                                    <img src="{{ asset('img/avatar-2.webp') }}" alt="Customer 2" class="avatar">
-                                    <img src="{{ asset('img/avatar-3.webp') }}" alt="Customer 3" class="avatar">
-                                    <img src="{{ asset('img/avatar-4.webp') }}" alt="Customer 4" class="avatar">
-                                    <img src="{{ asset('img/avatar-5.webp') }}" alt="Customer 5" class="avatar">
-
-                                    <span class="avatar more">12+</span>
-                                </div>
-                                <p class="mb-0 mt-2">15 Dokter siap membantu anda</p>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -247,7 +236,7 @@
         </section>
         <!-- /Clients Section -->
         <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials section light-background">
+        <section id="testimoni" class="testimonials section light-background">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Testimoni</h2>
@@ -257,7 +246,7 @@
                 <div class="row g-5">
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="testimonial-item">
-                            <img src="{{ asset('img/testimonials/testimoni01.png') }}" class="testimonial-img"
+                            <img src="{{ asset('img/testimonials/testimoni-1.png') }}" class="testimonial-img"
                                 alt="">
                             <h3>Nida Aulia Karima</h3>
                             <h4>Teknik Informatika</h4>
@@ -276,10 +265,10 @@
                     <!-- End testimonial item -->
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="testimonial-item">
-                            <img src="{{ asset('img/testimonials/testimoni2.jpeg') }}" class="testimonial-img"
+                            <img src="{{ asset('img/testimonials/testimoni-2.jpeg') }}" class="testimonial-img"
                                 alt="">
                             <h3>Zia Kanesya</h3>
-                            <h4>Designer</h4>
+                            <h4>Desain Komunikasi Visual</h4>
                             <div class="stars">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
@@ -287,9 +276,7 @@
                             </div>
                             <p>
                                     <i class="fa-solid fa-quote-left"></i>
-                                <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid
-                                    cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet
-                                    legam anim culpa.</span>
+                                <span>Website Poliklinik Udinus sangat membantu! Desainnya sederhana, informatif, dan mempermudah akses jadwal dokter serta riwayat pemeriksaan. Pelayanan jadi lebih efisien dan praktis.</span>
                                     <i class="fa-solid fa-quote-right"></i>
                             </p>
                         </div>
@@ -297,10 +284,10 @@
                     <!-- End testimonial item -->
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="testimonial-item">
-                            <img src="{{ asset('img/testimonials/testimoni3.jpeg') }}" class="testimonial-img"
+                            <img src="{{ asset('img/testimonials/testimoni-3.jpeg') }}" class="testimonial-img"
                                 alt="">
-                            <h3>Jena Karlis</h3>
-                            <h4>Store Owner</h4>
+                            <h3>Galih Mohammad</h3>
+                            <h4>Animasi</h4>
                             <div class="stars">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
@@ -308,9 +295,7 @@
                             </div>
                             <p>
                                      <i class="fa-solid fa-quote-left"></i>
-                                <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam
-                                    duis minim tempor labore quem eram duis noster aute amet eram fore quis sint
-                                    minim.</span>
+                                <span>Dengan adanya website Poliklinik Udinus, proses pendaftaran dan pengecekan jadwal menjadi lebih cepat. Sangat memudahkan mahasiswa dan staff untuk mendapatkan layanan kesehatan.</span>
                                     <i class="fa-solid fa-quote-right"></i>
                             </p>
                         </div>
@@ -318,10 +303,10 @@
                     <!-- End testimonial item -->
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
                         <div class="testimonial-item">
-                            <img src="{{ asset('img/testimonials/testimonials-2.jpg') }}" class="testimonial-img"
+                            <img src="{{ asset('img/testimonials/testimoni-3.jpeg') }}" class="testimonial-img"
                                 alt="">
-                            <h3>Matt Brandon</h3>
-                            <h4>Freelancer</h4>
+                            <h3>Mahdi Mas</h3>
+                            <h4>Teknik Mesin</h4>
                             <div class="stars">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
@@ -329,9 +314,7 @@
                             </div>
                             <p>
                                     <i class="fa-solid fa-quote-left"></i>
-                                <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat
-                                    minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore
-                                    labore illum veniam.</span>
+                                <span>Fitur yang lengkap dan mudah digunakan. Riwayat pemeriksaan tersimpan rapi, sehingga tidak perlu repot mencatat manual. Solusi modern untuk layanan kesehatan kampus, namun juga berguna untuk umum</span>
                                     <i class="fa-solid fa-quote-right"></i>
                             </p>
                         </div>
@@ -342,7 +325,7 @@
         </section>
         <!-- EndTestimonials Section -->
         <!-- Faq Section -->
-        <section class="faq-9 faq section light-background" id="faq">
+        <section class="faq faq section light-background" id="faq">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5" data-aos="fade-up">

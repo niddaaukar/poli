@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,12 +20,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            PoliSeeder::class,
-            AdminSeeder::class,
-            PasienSeeder::class,
-            DokterSeeder::class,
-            ObatSeeder::class,
-            JadwalPeriksaSeeder::class,
+            PoliSeeder::class,  // Menjalankan PoliSeeder untuk seeding data poli
+            AdminSeeder::class,  // Menjalankan AdminSeeder untuk seeding data admin
+            PasienSeeder::class,  // Menjalankan PasienSeeder untuk seeding data pasien
+            DokterSeeder::class,  // Menjalankan DokterSeeder untuk seeding data dokter
+            ObatSeeder::class,  // Menjalankan ObatSeeder untuk seeding data obat
+            JadwalPeriksaSeeder::class,  // Menjalankan JadwalPeriksaSeeder untuk seeding data jadwal periksa
         ]);
     }
 }

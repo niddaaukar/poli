@@ -12,34 +12,43 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
+    // Menampilkan data statistik untuk dashboard dokter
     public function index()
     {
-        $dokter = auth()->guard('dokter')->user(); // Mendapatkan dokter yang sedang login
+        // Mendapatkan data dokter yang sedang login menggunakan guard 'dokter'
+        $dokter = auth()->guard('dokter')->user();
+
+        // Menghitung jumlah dokter yang terdaftar di database
         $jumlah_dokter = Dokter::count();
+
+        // Menghitung jumlah poli yang terdaftar di database
         $jumlah_poli = Poli::count();
+
+        // Menghitung jumlah obat yang terdaftar di database
         $jumlah_obat = Obat::count();
 
-        // Mendapatkan jadwal dokter yang sedang login
+        // Mendapatkan ID jadwal periksa yang terkait dengan dokter yang sedang login
         $jadwalId = $dokter->jadwalPeriksa->pluck('id');
 
-        // Menghitung jumlah pasien yang terdaftar berdasarkan jadwal dokter
+        // Menghitung jumlah pasien yang terdaftar berdasarkan jadwal dokter yang sedang login
         $jumlah_pasien = DaftarPoli::whereIn('id_jadwal', $jadwalId)
-            ->with('periksa')
+            ->with('periksa') // Memuat relasi 'periksa' untuk mengecek status pemeriksaan
             ->count();
 
-        // Mendapatkan 5 pasien terbaru berdasarkan jadwal dokter
+        // Mendapatkan 5 pasien terbaru yang terdaftar berdasarkan jadwal dokter yang sedang login
         $pasiens = DaftarPoli::whereIn('id_jadwal', $jadwalId)
-            ->with('pasien') // Pastikan relasi 'pasien' ada di model DaftarPoli
-            ->latest('created_at') // Urutkan berdasarkan waktu terbaru
-            ->take(5)
+            ->with('pasien') // Relasi 'pasien' untuk mengambil data pasien yang terdaftar
+            ->latest('created_at') // Mengurutkan pasien berdasarkan waktu pendaftaran terbaru
+            ->take(5) // Membatasi hanya 5 pasien terbaru
             ->get();
 
+        // Mengarahkan ke view 'dokter.dashboard.index' dan mengirimkan data statistik ke view
         return view('dokter.dashboard.index', compact(
-            'jumlah_dokter',
-            'jumlah_pasien',
-            'jumlah_poli',
-            'jumlah_obat',
-            'pasiens'
+            'jumlah_dokter', // Jumlah dokter yang terdaftar
+            'jumlah_pasien', // Jumlah pasien yang terdaftar untuk jadwal dokter
+            'jumlah_poli', // Jumlah poli yang terdaftar
+            'jumlah_obat', // Jumlah obat yang terdaftar
+            'pasiens' // Data 5 pasien terbaru
         ));
     }
 }

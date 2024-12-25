@@ -8,7 +8,7 @@ use App\Models\Poli;
 
 class PoliController extends Controller
 {
-    // Method untuk menampilkan daftar semua Poli
+    // Menampilkan daftar semua Poli
     public function index()
     {
         // Mengambil semua data Poli dari database
@@ -18,14 +18,14 @@ class PoliController extends Controller
         return view('admin.poli.index', compact('polis'));
     }
 
-    // Method untuk menampilkan form tambah Poli
+    // Menampilkan form tambah Poli
     public function create()
     {
         // Menampilkan view untuk form tambah Poli
         return view('admin.poli.create');
     }
 
-    // Method untuk menampilkan form edit Poli berdasarkan ID
+    // Menampilkan form edit Poli berdasarkan ID
     public function edit($id)
     {
         // Mencari Poli berdasarkan ID yang diberikan
@@ -35,7 +35,7 @@ class PoliController extends Controller
         return view('admin.poli.edit', compact('poli'));
     }
 
-    // Method untuk menyimpan data Poli baru ke database
+    // Menyimpan data Poli baru ke database
     public function store(Request $request)
     {
         // Validasi input dari form
@@ -58,7 +58,7 @@ class PoliController extends Controller
             ]);
     }
 
-    // Method untuk memperbarui data Poli yang sudah ada
+    // Memperbarui data Poli yang sudah ada
     public function update(Request $request, $id)
     {
         // Validasi input dari form

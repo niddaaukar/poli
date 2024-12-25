@@ -35,14 +35,19 @@
 </li>
       </ul>
       </div>
-
       <!-- Sosial Media -->
       <div class="col-lg-2 col-md-3 footer-links" style="margin-bottom: 20px; padding-top: 10px;"> 
         <h4>Sosial Media</h4>
         <div class="social-links d-flex mt-4">
-          <a href="{{ $setting->sosmed_fb ?? '#' }}" target="_blank"><i class="fab fa-facebook"></i></a>
-          <a href="{{ $setting->sosmed_ig ?? '#' }}" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="{{ $setting->sosmed_yt ?? '#' }}" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:nidaaukar13@gmail.com" target="_blank">
+            <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://instagram.com/niddaaul" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://youtube.com/@nidakarima954" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
         </div>
       </div>
     </div>

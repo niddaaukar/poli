@@ -10,7 +10,7 @@ use Carbon\Carbon;
 
 class PasienController extends Controller
 {
-    // Method ini digunakan untuk menampilkan seluruh data pasien dari database.
+    // Menampilkan seluruh data pasien dari database.
     public function index()
     {
         // Mengambil semua data Pasien
@@ -20,7 +20,7 @@ class PasienController extends Controller
         return view('admin.pasien.index', compact('pasiens'));
     }
 
-    // Method ini digunakan untuk menampilkan form pembuatan data pasien baru.
+    // Menampilkan form pembuatan data pasien baru.
     public function create()
     {
         // Menggenerate Nomor Rekam Medis (No RM) otomatis berdasarkan bulan dan tahun saat ini
@@ -30,17 +30,17 @@ class PasienController extends Controller
         return view('admin.pasien.create', compact('no_rm'));
     }
 
-    // Method ini digunakan untuk menampilkan form edit data pasien berdasarkan ID yang diberikan.
+    // Menampilkan form edit data pasien berdasarkan ID yang diberikan.
     public function edit($id)
     {
-        // Mencari pasien berdasarkan ID yang diberikan, jika tidak ditemukan akan menampilkan error 404
+        // Mencari pasien berdasarkan ID yang diberikan
         $pasien = Pasien::findOrFail($id);
 
         // Mengembalikan tampilan form edit dan mengirimkan data pasien yang telah diambil
         return view('admin.pasien.edit', compact('pasien'));
     }
 
-    // Method ini digunakan untuk menyimpan data pasien baru ke dalam database.
+    // Menyimpan data pasien baru ke dalam database.
     public function store(Request $request)
     {
         // Melakukan validasi terhadap data yang diterima dari request
@@ -78,7 +78,7 @@ class PasienController extends Controller
             ]);
     }
 
-    // Method ini digunakan untuk memperbarui data pasien yang sudah ada di database.
+    // Memperbarui data pasien yang sudah ada di database.
     public function update(Request $request, Pasien $pasien)
     {
         // Melakukan validasi terhadap data yang diterima dari request (sama seperti di method store)
@@ -116,7 +116,7 @@ class PasienController extends Controller
             ]);
     }
 
-    // Method ini digunakan untuk menghapus data pasien dari database.
+    // Menghapus data pasien dari database.
     public function destroy(Pasien $pasien)
     {
         // Menghapus data pasien dari database
@@ -130,7 +130,7 @@ class PasienController extends Controller
             ]);
     }
 
-    // Method ini digunakan untuk menghasilkan Nomor Rekam Medis (No RM) secara otomatis berdasarkan tahun, bulan, dan urutan pasien.
+    // Menghasilkan Nomor Rekam Medis (No RM) secara otomatis berdasarkan tahun, bulan, dan urutan pasien.
     public function generateNoRM()
     {
         // Ambil tahun dan bulan sekarang
@@ -142,7 +142,7 @@ class PasienController extends Controller
             ->whereMonth('created_at', $bulan)
             ->count();
 
-        // Urutan pasien berikutnya
+        // Urutan pasien selanjutnya
         $urutan = $jumlah_pasien + 1;
 
         // Format No RM: Tahun + Bulan + Urutan

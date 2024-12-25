@@ -9,15 +9,19 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    //
     public function index()
     {
+        // Mengambil data pasien yang sedang login
         $pasien = auth()->guard('pasien')->user();
+
+        // Menampilkan halaman profil dengan data pasien yang telah diambil
         return view('pasien.profil.index', compact('pasien'));
     }
 
+    // Mengupdate profil pasien
     public function updateProfile(Request $request)
     {
+        // Validasi input yang diterima dari form
         $request->validate([
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
@@ -26,8 +30,10 @@ class ProfileController extends Controller
             'no_rm' => 'required|string|max:25',
         ]);
 
+        // Mencari data pasien berdasarkan ID pasien yang sedang login
         $pasien = Pasien::find(auth()->guard('pasien')->user()->id);
 
+        // Memperbarui data pasien sesuai dengan input yang diterima
         $pasien->update([
             'nama' => $request->input('nama'),
             'alamat' => $request->input('alamat'),
@@ -36,6 +42,7 @@ class ProfileController extends Controller
             'no_rm' => $request->input('no_rm'),
         ]);
 
+        // Mengarahkan kembali ke halaman profil dengan pesan sukses
         return redirect()->route('pasien.profil.index')->with([
             'message' => 'Profil berhasil diubah!',
             'alert-type' => 'success'
@@ -45,6 +52,7 @@ class ProfileController extends Controller
     // Mengupdate password pasien
     public function updatePassword(Request $request)
     {
+        // Mencari data pasien berdasarkan ID pasien yang sedang login
         $pasien = Pasien::find(auth()->guard('pasien')->user()->id);
 
         // Validasi input password
@@ -64,6 +72,7 @@ class ProfileController extends Controller
             'password' => Hash::make($request->password_baru),
         ]);
 
+        // Mengarahkan kembali ke halaman profil dengan pesan sukses
         return redirect()->back()->with([
             'message' => 'Password berhasil diubah!',
             'alert-type' => 'success'

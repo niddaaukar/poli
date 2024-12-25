@@ -19,21 +19,22 @@
    <div class="content-wrapper">
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Akun Setting</span> Akun</h4>
+              <h4 class="fw-bold py-3 mb-4" ><span class="text-muted fw-light">Beranda</span>/ Profil Pasien</h4>
               <div class="row">
                 <div class="col-md-12">
                   <ul class="nav nav-pills flex-column flex-md-row mb-3">
                     <li class="nav-item">
-                      <a class="nav-link active" href="{{ route('homepage') }}" >Kembali</a>
+                      <a class="nav-link active bg-warning text-white" href="{{ route('homepage') }}" > 
+                      <i class="fa-solid fa-arrow-left"></i> Kembali</a>
                     </li>
                   </ul>
                   <div class="card mb-4">
-                    <h5 class="card-header">Ubah Profile</h5>
+                    <h5 class="card-header">Ubah Profil</h5>
                     <!-- Account -->
                     <div class="card-body">
                       <div class="d-flex align-items-start align-items-sm-center gap-4">
                         <img
-                          src="../assets/img/avatars/1.png"
+                          src="{{ asset('img/avatar.jpg') }}"
                           alt="user-avatar"
                           class="d-block rounded"
                           height="100"
@@ -93,7 +94,7 @@
                           <div class="input-group">
                                                     <input type="text" class="form-control @error('no_rm') is-invalid @enderror" name="no_rm" id="no_rm" value="{{ old('no_rm', $pasien->no_rm) }}" readonly>
                                                     <span class="input-group-text">
-                                                        <i class="fa-solid fa-hashtag me-1"></i>
+                                                    <i class="fas fa-hospital"></i>
                                                     </span>
                                                     @error('no_rm')
                                                         <div class="invalid-feedback">
@@ -117,8 +118,8 @@
                                         </div>
                           </div>
                         </div>
-                        <div class="mt-2">
-                          <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                       </form>
                     </div>
@@ -127,64 +128,68 @@
                   <div class="card">
                     <h5 class="card-header">Ubah Password</h5>
                     <div class="card-body">
-                            <form action="{{ route('pasien.profil.update-password') }}" method="POST">
-                                @csrf
-                                <div class="form-group row border-bottom pb-4 mx-1">
-                                    <label for="password_sekarang" class="col-form-label">Password Sekarang<span class="text-danger">*</span></label>
-                                    <div class="col-sm-12">
-                                        <div class="input-group">
-                                            <input type="password" id="password_sekarang" name="password_sekarang" class="form-control @error('password_sekarang') is-invalid @enderror" placeholder="Masukan Password Sekarang" required autocomplete="current-password">
-                                            <span class="input-group-text" onclick="togglePassword(this)" style="cursor: pointer;">
-                                                <i class="fa-solid fa-eye-slash me-1"></i>
-                                            </span>
-                                            @error('password_sekarang')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
+                        <form action="{{ route('pasien.profil.update-password') }}" method="POST">
+                            @csrf
+                            <!-- Password Sekarang -->
+                            <div class="form-group row pb-4 mx-1">
+                                <label for="password_sekarang" class="col-form-label">Password Sekarang<span class="text-danger">*</span></label>
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <input type="password" id="password_sekarang" name="password_sekarang" class="form-control @error('password_sekarang') is-invalid @enderror" placeholder="Masukan Password Sekarang" required autocomplete="current-password">
+                                        <span class="input-group-text" onclick="togglePassword(this)" style="cursor: pointer;">
+                                            <i class="fa-solid fa-eye-slash me-1"></i>
+                                        </span>
+                                        @error('password_sekarang')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
+                            </div>
+                        <!-- Password Baru -->
+                        <div class="form-group row pb-4 mx-1">
+                            <label for="password_baru" class="col-form-label">Password Baru<span class="text-danger">*</span></label>
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <input type="password" id="password_baru" name="password_baru" class="form-control @error('password_baru') is-invalid @enderror" placeholder="Masukan Password Baru" required autocomplete="new-password">
+                                    <span class="input-group-text" onclick="togglePassword(this)" style="cursor: pointer;">
+                                        <i class="fa-solid fa-eye-slash me-1"></i>
+                                    </span>
+                                    @error('password_baru')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    <!-- Konfirmasi Password -->
+                    <div class="form-group row pb-4 mx-1">
+                        <label for="konfirmasi_password" class="col-form-label">Konfirmasi Password<span class="text-danger">*</span></label>
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <input type="password" id="konfirmasi_password" name="konfirmasi_password" class="form-control @error('konfirmasi_password') is-invalid @enderror" placeholder="Masukan Konfirmasi Password" required autocomplete="new-password">
+                                <span class="input-group-text" onclick="togglePassword(this)" style="cursor: pointer;">
+                                    <i class="fa-solid fa-eye-slash me-1"></i>
+                                </span>
+                                @error('konfirmasi_password')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
 
-                                <div class="form-group row border-bottom pb-4 mx-1">
-                                    <label for="password_baru" class="col-form-label">Password Baru<span class="text-danger">*</span></label>
-                                    <div class="col-sm-12">
-                                        <div class="input-group">
-                                            <input type="password" id="password_baru" name="password_baru" class="form-control @error('password_baru') is-invalid @enderror" placeholder="Masukan Password Baru" required autocomplete="new-password">
-                                            <span class="input-group-text" onclick="togglePassword(this)" style="cursor: pointer;">
-                                                <i class="fa-solid fa-eye-slash me-1"></i>
-                                            </span>
-                                            @error('password_baru')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row border-bottom pb-4 mx-1">
-                                    <label for="konfirmasi_password" class="col-form-label">Konfirmasi Password<span class="text-danger">*</span></label>
-                                    <div class="col-sm-12">
-                                        <div class="input-group">
-                                            <input type="password" id="konfirmasi_password" name="konfirmasi_password" class="form-control @error('konfirmasi_password') is-invalid @enderror" placeholder="Masukan Konfirmasi Password" required autocomplete="new-password">
-                                            <span class="input-group-text" onclick="togglePassword(this)" style="cursor: pointer;">
-                                                <i class="fa-solid fa-eye-slash me-1"></i>
-                                            </span>
-                                            @error('konfirmasi_password')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- Tombol Simpan -->
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary">Simpan Password</button>
+                                    <button type="submit" class="btn btn-primary">Ubah Password</button>
                                 </div>
                             </form>
                         </div>
-                  </div>
+                    </div>
+
                 </div>
               </div>
             </div>

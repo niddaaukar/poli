@@ -1,6 +1,6 @@
-# Website Temu Janji Poli Udinus (POLIKLINIK)
+# Website Temu Janji Poli Udinus (POLIKLINIK - UDINUS)
 
-Website Temu Janji Poli Udinus adalah aplikasi berbasis web yang memungkinkan pengguna untuk melakukan pendaftaran dan pengaturan jadwal kunjungan  poli di Universitas Dian Nuswantoro (Udinus). Website ini ditujukan untuk mempermudah pasien atau pengguna dalam memilih waktu kunjungan sesuai dengan kebutuhan mereka dan menghindari antrian yang panjang di rumah sakit atau klinik.
+Website Temu Janji Poli Udinus adalah aplikasi berbasis web yang memungkinkan pengguna untuk melakukan pendaftaran dan pengaturan jadwal kunjungan  poli di Universitas Dian Nuswantoro (Udinus). Website ini ditujukan untuk mempermudah pasien atau pengguna dalam memilih waktu kunjungan sesuai dengan kebutuhan mereka dan menghindari antrian yang panjang pada klinik. serta membantu dokter dan admin dalam managemen data di poliklinik udinus.
 
 ## Fitur Website 
 - **Login sebagai Admin**: Admin dapat mengelola dan memantau seluruh aktivitas aplikasi.
@@ -38,21 +38,20 @@ Gunakan data berikut untuk mengakses aplikasi sesuai dengan peran:
 
 1. Admin -> No HP: 089619636519 dan Password: NidaAuliaK13
 2. Dokter -> No HP: Lihat database karena, setiap kali di php artisan migrate:fresh --seed maka seeder dokter (no hp akan baru) dan Password tetap : 12345678
-3. Pasien -> No HP: Lihat database karena, setiap kali di php artisan migrate:fresh --seed maka seeder dokter (no hp akan baru)  dan Password: 12345678
+3. Pasien -> No HP: Lihat database karena, setiap kali di php artisan migrate:fresh --seed maka seeder dokter (no hp akan baru)  dan Password tetap : 12345678
 
 ## Instalasi dan Menjalankan Proyek
 1. Clone Repository : https://github.com/niddaaukar/poli.git
-2. Instalasi Dependensi : npm install
+2. Perintah Clone : git clone  https://github.com/niddaaukar/poli.git
 
-# Panduan Instalasi Laravel
+# Panduan Instalasi Project Poliklinik 
 
 ## 1. Instalasi Dependensi PHP
 Instal semua dependensi PHP menggunakan Composer:
 ```bash
 composer install
 
-
-- Instal semua dependensi frontend menggunakan npm:
+2. Instal semua dependensi frontend menggunakan npm:
 perintah
 npm install
 
@@ -64,12 +63,12 @@ cp .env.example .env
 Kemudian, buka file .env dan sesuaikan konfigurasi database, mail, dan lainnya sesuai kebutuhan Anda.
 
 4. Generate Key Aplikasi
-Jalankan perintah untuk menghasilkan aplikasi key Laravel:
+Jalankan perintah untuk menghasilkan aplikasi key Laravel
 perintah : 
 php artisan key:generate
 
 5. Migrasi dan Seeder Database
-Jalankan migrasi dan seeding database untuk menyiapkan tabel dan data awal:
+Jalankan migrasi dan seeding database untuk menyiapkan tabel dan data awal
 perintah : 
 php artisan migrate --seed
 
@@ -78,15 +77,8 @@ Setelah semuanya terinstal dan terkonfigurasi, jalankan server pengembangan Lara
 perintah : 
 php artisan serve
 
-# Informasi Login
 
-Gunakan data berikut untuk mengakses aplikasi sesuai dengan peran:
-
-1. Admin -> No HP: 089619636519 dan Password: NidaAuliaK13
-2. Dokter -> No HP: 083862052204 dan Password: 12345678
-3. Pasien -> No HP: 084668354734 dan Password: 12345678
-
-# Berikut adalah struktur direktori utama dalam proyek ini:
+Berikut adalah struktur direktori utama dalam proyek ini:
 
 ├── app/               # Kode aplikasi utama
 ├── bootstrap/         # File konfigurasi bootstrap

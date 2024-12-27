@@ -1,31 +1,22 @@
 @extends('components.app')
-
 @push('title')
     <title>Detail Riwayat</title>
 @endpush
-
 @section('content')
 <div class="container mt-5">
+<ul class="nav nav-pills flex-column flex-md-row mb-3">
+                        <li class="nav-item">
+                            <a class="nav-link active bg-warning text-white" href="{{ route('dokter.riwayat_pasien.index') }}">
+                                <i class="fa-solid fa-arrow-left"></i> Kembali
+                            </a>
+                        </li>
+                    </ul>
     <div class="card shadow">
-        <!-- Header -->
         <div class="card-header bg-primary text-white text-center">
             <h3 class="card-title mb-0 text-white">Detail Riwayat Pasien</h3>
         </div>
-        
-        <!-- Body -->
         <div class="card-body">
-            <div class="row mb-4">
-                <div class="col-md-4">
-                    <h5><strong>Nama:</strong> NIDA AULIA KARIMA</h5>
-                </div>
-                <div class="col-md-4">
-                    <h5><strong>No. RM:</strong> 202412-21</h5>
-                </div>
-                <div class="col-md-4">
-                    <h5><strong>Total Kunjungan:</strong> 2</h5>
-                </div>
-            </div>
-            <table id="data-table" class="table table-bordered table-hover table-responsive align-items-center align-middle w-100">
+        <table id="data-table" class="table table-hover table-responsive align-items-center align-middle w-100">
                 <thead class="bg-light text-center">
                     <tr>
                         <th>ID</th>
@@ -46,12 +37,14 @@
                             <td class="text-end">Rp {{ number_format($riwayat->periksa->biaya_periksa ?? 0, 0, ',', '.') }}</td>
                             <td>
                                 @if($riwayat->periksa && $riwayat->periksa->detailPeriksa->isNotEmpty())
+                                  <!-- Jika riwayat pemeriksaan memiliki detail pemeriksaan dan detail pemeriksaan tidak kosong -->
                                     <ul class="list-unstyled mb-0">
                                         @foreach ($riwayat->periksa->detailPeriksa as $detail)
                                             <li>{{ $detail->obat->nama_obat }}</li>
                                         @endforeach
                                     </ul>
                                 @else
+                                 <!-- Jika tidak ada detail pemeriksaan atau detail pemeriksaan kosong -->
                                     <span>Tidak ada obat</span>
                                 @endif
                             </td>

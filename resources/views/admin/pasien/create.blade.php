@@ -4,7 +4,6 @@
     <div class="container">
         <h2 class="my-4">Daftar Pasien Baru</h2>
         @include('components.alert')
-        <!-- Wrapper dengan border putih dan desain sesuai dengan contoh -->
         <div class="form-wrapper p-4" style="border: 2px solid #dee2e6; border-radius: 8px; background-color: #ffffff;">
             <form action="{{ route('admin.pasien.store') }}" method="POST">
                 @csrf

@@ -4,7 +4,6 @@
 <div class="container">
     <div class="card p-4">
         <h1>Edit Obat</h1>
-        
         <form action="{{ route('admin.obat.update', $obat->id) }}" method="POST">
             @csrf
             @method('PUT')

@@ -1,6 +1,6 @@
 @extends('components.app')
 @push('title')
-    <title>Daftar Dokter - Poliklinik Udinus</title>
+    <title>Daftar Dokter</title>
 @endpush
 @section('content')
     <section id="index-dokter">
@@ -10,9 +10,6 @@
                     <div class="card mb-4">
                         <div class="card-header pb-0">
                             <h3>Daftar Periksa</h3>
-                            <a href="" class="btn btn-primary shadow-sm float-right mt-2">
-                                Tambah 
-                            </a>
                         </div>
                         <div class="card-body pt-0">
                             @include('components.alert')

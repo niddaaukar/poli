@@ -1,33 +1,32 @@
-@extends('frontend.layout.app')
-
+@extends('frontend.layout.app') 
+@push('title')
+    <title>Login</title>
+@endpush
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/frontend/page-auth.css') }}" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
+        
         body {
             background-image: url('{{ asset('img/login-register/login.jpg') }}');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-            color: white;
+            color: white; 
         }
     </style>
 @endpush
-
-
 @section('content')
-    <!-- Content -->
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
             <div class="authentication-inner">
-                <!-- Register -->
+                <!-- Form Login -->
                 <div class="card">
                     <div class="card-body">
                         <h4 class="mb-2">Login</h4>
                         <p class="mb-4">Masukan Nomor Telephone dan Password dengan benar 👋</p>
-
                         <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
-                            @csrf
+                            @csrf 
                             <div class="mb-3">
                                 <label for="no_hp" class="form-label">Nomor Telephone</label>
                                 <input type="text" class="form-control @error('no_hp') is-invalid @enderror"
@@ -61,11 +60,10 @@
                         </p>
                     </div>
                 </div>
-                <!-- /Register -->
             </div>
         </div>
     </div>
-    <!-- / Content -->
+    @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const togglePassword = document.getElementById('togglePassword');
@@ -79,5 +77,5 @@
             });
         });
     </script>
+    @endpush
 @endsection
-

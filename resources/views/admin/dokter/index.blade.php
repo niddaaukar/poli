@@ -1,7 +1,7 @@
 @extends('components.app')
 @section('content')
 
-<div class="container mt-4"> <!-- Menambahkan margin-top -->
+<div class="container mt-4">
     <h1>Daftar Dokter</h1>
     <a href="{{ route('admin.dokter.create') }}" class="btn btn-primary mb-3">Tambah Dokter</a>
     @if(session('success'))
@@ -10,7 +10,7 @@
         </div>
     @endif
 
-    <div class="card p-3"> <!-- card dengan padding 3 -->
+    <div class="card p-3"> 
         <table class="table table-striped" id="data-table" class="table table-hover table-responsive align-items-center align-middle w-100"> 
             <thead>
                 <tr>

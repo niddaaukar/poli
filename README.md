@@ -1,4 +1,4 @@
-# Website Temu Janji Poli Udinus
+# Website Temu Janji Poli Udinus (POLIKLINIK)
 
 Website Temu Janji Poli Udinus adalah aplikasi berbasis web yang memungkinkan pengguna untuk melakukan pendaftaran dan pengaturan jadwal kunjungan  poli di Universitas Dian Nuswantoro (Udinus). Website ini ditujukan untuk mempermudah pasien atau pengguna dalam memilih waktu kunjungan sesuai dengan kebutuhan mereka dan menghindari antrian yang panjang di rumah sakit atau klinik.
 
@@ -37,15 +37,20 @@ Website Temu Janji Poli Udinus adalah aplikasi berbasis web yang memungkinkan pe
 Gunakan data berikut untuk mengakses aplikasi sesuai dengan peran:
 
 1. Admin -> No HP: 089619636519 dan Password: NidaAuliaK13
-2. Dokter -> No HP: 083862052204 dan Password: 12345678
-3. Pasien -> No HP: 084668354734 dan Password: 12345678
+2. Dokter -> No HP: Lihat database karena, setiap kali di php artisan migrate:fresh --seed maka seeder dokter (no hp akan baru) dan Password tetap : 12345678
+3. Pasien -> No HP: Lihat database karena, setiap kali di php artisan migrate:fresh --seed maka seeder dokter (no hp akan baru)  dan Password: 12345678
 
 ## Instalasi dan Menjalankan Proyek
 1. Clone Repository : https://github.com/niddaaukar/poli.git
-2. Instalasi Dependensi
-- Instal semua dependensi PHP menggunakan Composer:
-perintah :
+2. Instalasi Dependensi : npm install
+
+# Panduan Instalasi Laravel
+
+## 1. Instalasi Dependensi PHP
+Instal semua dependensi PHP menggunakan Composer:
+```bash
 composer install
+
 
 - Instal semua dependensi frontend menggunakan npm:
 perintah

@@ -44,6 +44,7 @@ class DashboardController extends Controller
 
         // Mengarahkan ke view 'dokter.dashboard.index' dan mengirimkan data statistik ke view
         return view('dokter.dashboard.index', compact(
+            'dokter',
             'jumlah_dokter', // Jumlah dokter yang terdaftar
             'jumlah_pasien', // Jumlah pasien yang terdaftar untuk jadwal dokter
             'jumlah_poli', // Jumlah poli yang terdaftar

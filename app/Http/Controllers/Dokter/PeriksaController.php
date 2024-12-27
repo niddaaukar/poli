@@ -74,11 +74,12 @@ class PeriksaController extends Controller
 
         // Mencari data DaftarPoli berdasarkan ID yang diterima
         $daftarpoli = DaftarPoli::findOrFail($id);
+        
 
         // Mengambil semua obat yang dipilih berdasarkan ID obat yang diterima dari form
         $obats = Obat::whereNull('deleted_at')->whereIn('id', $request->obat)->get();
 
-        // Menghitung total biaya periksa, dimulai dari biaya dasar
+        // Menghitung total biaya periksa, yang telah ditetapkan pada capstone ( 1 kali periksa = biaya dokter)
         $biaya = 150000;
         
         // Menambahkan biaya obat berdasarkan harga obat yang dipilih
@@ -86,7 +87,7 @@ class PeriksaController extends Controller
             $biaya += $obat->harga;
         }
 
-        // Mencari atau membuat data pemeriksaan (Periksa) baru untuk poli ini
+        // Mencari atau membuat data pemeriksaan (Periksa) baru untuk poli yang dituju
         $periksa = Periksa::updateOrCreate(
             ['id_daftar_poli' => $daftarpoli->id], // Mencari data periksa yang sesuai
             [
@@ -96,7 +97,7 @@ class PeriksaController extends Controller
             ]
         );
 
-        // Menghapus semua detail periksa sebelumnya untuk periksa ini
+        // Menghapus semua detail periksa sebelumnya untuk periksa yang dituju
         $periksa->detailPeriksa()->delete();
 
         // Menambahkan detail periksa baru berdasarkan obat yang dipilih

@@ -4,13 +4,10 @@
 @endpush
 @section('content')
 <div class="container mt-5">
-    <!-- Card Utama -->
     <div class="card shadow">
-        <!-- Header Card -->
         <div class="card-header bg-primary text-center">
             <h3 class="card-title text-white m-0">Riwayat Pasien</h3>
         </div>
-        <!-- Isi Card -->
         <div class="card-body">
                 <div class="table-responsive">
                 <table id="data-table" class="table table-hover table-responsive align-items-center align-middle w-100">

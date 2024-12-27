@@ -1,7 +1,7 @@
 @extends('components.app')
 @include('frontend.components.navbar-homepage')
 @push('title')
-    <title>Detail Periksa - Poliklinik Udinus</title>
+    <title>Detail Periksa Pasien</title>
 @endpush
 @push('styles')
     <style>
@@ -58,8 +58,6 @@
                         <i class="fa fa-arrow-left me-1"></i> Kembali
                     </a>
                 </div>
-
-                <!-- Card Body -->
                 <div class="card-body">
                     <div class="row">
                         <!-- Data Pasien -->
@@ -82,7 +80,6 @@
                                 <span class="data-label">Poli      :    </span> {{ $daftarpoli->jadwalPeriksa->dokter->poli->nama_poli }}
                             </div>
                         </div>
-
                         <!-- Data Periksa -->
                         <div class="col-md-6">
                             <h5 class="mb-3">Data Periksa</h5>
@@ -127,9 +124,9 @@
                                 </div>
                             @endif
                         </div>
-                    </div> <!-- Row End -->
-                </div> <!-- Card Body End -->
-            </div> <!-- Card End -->
+                    </div> 
+                </div> 
+            </div>
         </div>
     </section>
 @endsection

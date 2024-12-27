@@ -1,11 +1,8 @@
 @extends('components.app')
-
 @section('content')
     <div class="container">
         <h2 class="my-4">Daftar Pasien</h2>
-        <!-- Add Patient Button -->
         <a href="{{ route('admin.pasien.create') }}" class="btn btn-primary mb-3">Tambah Pasien</a>
-        
         <!-- Membungkus tabel dengan div card untuk latar belakang -->
         <div class="card p-3"> <!-- card dengan padding 3 -->
             <!-- Table -->

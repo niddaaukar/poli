@@ -1,10 +1,12 @@
 @extends('components.app')
+@push('title')
+    <title>Daftar Poli</title>
+@endpush
 @section('content')
     <div class="container">
         <h2 class="my-4">Daftar Poli</h2>
         <a href="{{ route('admin.poli.create') }}" class="btn btn-primary mb-3">Tambah Poli</a>
         <div class="card p-3"> 
-            <!-- Tabel Poli -->
             <table class="table table-striped">
                 <thead>
                     <tr>

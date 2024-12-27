@@ -1,4 +1,7 @@
 @extends('components.app')
+@push('title')
+    <title>Poli Udinus</title>
+@endpush
 @section('content')
     @include('frontend.components.navbar-homepage')
     <main class="main">
@@ -116,7 +119,6 @@
                             Sabtu, mulai 08:00-18:00.
                         </p>
                     </div>
-
                     <!-- Image Content -->
                     <div class="col-xl-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="image-wrapper position-relative">
@@ -155,11 +157,10 @@
                                 <p style="text-align: justify">Poli Umum menyediakan layanan kesehatan dasar untuk keluhan
                                     ringan hingga sedang. Dokter melakukan diagnosis awal, memberikan pengobatan, dan
                                     merujuk pasien ke poli spesialis jika diperlukan.</p>
-                                <!-- <a href="service-details.html" class="read-more">Detail<i class="bi bi-arrow-right"></i></a> -->
                             </div>
                         </div>
                     </div>
-                    <!-- End Service Card -->
+                    <!-- End Layanan -->
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-card d-flex">
                             <div class="icon flex-shrink-0">
@@ -170,7 +171,6 @@
                                 <p style="text-align: justify">Poli Spesialis memberikan perawatan khusus sesuai dengan
                                     bidang tertentu oleh dokter spesialis. Pasien biasanya dirujuk ke sini jika membutuhkan
                                     penanganan lebih spesifik.</p>
-                                <!-- <a href="service-details.html" class="read-more">Detail<i class="bi bi-arrow-right"></i></a> -->
                             </div>
                         </div>
                     </div>
@@ -237,11 +237,11 @@
         <!-- /Clients Section -->
         <!-- Testimonials Section -->
         <section id="testimoni" class="testimonials section light-background">
-            <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Testimoni</h2>
                 <p>Kata mereka yang telah mendapatkan layanan di POLI UDINUS</p>
-            </div><!-- End Section Title -->
+            </div>
+            <!-- End Section Title -->
             <div class="container">
                 <div class="row g-5">
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
@@ -388,22 +388,22 @@
             </div>
         </section>
         <!-- /Faq Section -->
-        
     </main>
     @include('frontend.components.footer-homepage')
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="fa-regular fa-circle-up"></i></a>   
+            class="fa-regular fa-circle-up"></i></a>  
+@push('scripts') 
             <script>
-        document.querySelectorAll('.faq-item').forEach(item => {
-    item.addEventListener('click', () => {
-        const isActive = item.classList.contains('faq-active');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('faq-active')); // Tutup semua
-        if (!isActive) {
-            item.classList.add('faq-active'); // Buka item yang diklik
-        }
-    });
-});
-
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const isActive = item.classList.contains('faq-active');
+                    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('faq-active')); // Tutup semua
+                    if (!isActive) {
+                        item.classList.add('faq-active'); // Buka item yang diklik
+                    }
+                });
+            });
     </script>
+    @endpush
 @endsection

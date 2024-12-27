@@ -1,6 +1,6 @@
 @extends('components.app')
 @push('title')
-    <title>Detail Periksa - Poliklinik Udinus</title>
+    <title>Detail Periksa</title>
 @endpush
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/vendor/select2/select2.min.css') }}">
@@ -20,21 +20,21 @@
                             @include('components.alert')
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group row border-bottom pb-4 mx-1">
+                                    <div class="form-group row pb-3 mx-1">
                                         <label for="nama" class="col-form-label">Nama Pasien</label>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control @error('nama') is-invalid @enderror"
                                                 name="nama" id="nama" value="{{ old('nama', $daftarpoli->pasien->nama) }}" readonly>
                                         </div>
                                     </div>
-                                    <div class="form-group row border-bottom pb-4 mx-1">
+                                    <div class="form-group row pb-3 mx-1">
                                         <label for="tgl_periksa" class="col-form-label">Tanggal Periksa</label>
                                         <div class="col-sm-12">
                                             <input type="date" class="form-control @error('tgl_periksa') is-invalid @enderror"
                                                 name="tgl_periksa" id="tgl_periksa" value="{{ old('tgl_periksa', $daftarpoli->tgl_periksa) }}" readonly>
                                         </div>
                                     </div>
-                                    <div class="form-group row border-bottom pb-4 mx-1">
+                                    <div class="form-group row pb-3 mx-1">
                                         <label for="keluhan" class="col-form-label">Keluhan</label>
                                         <div class="col-sm-12">
                                             <textarea class="form-control @error('keluhan') is-invalid @enderror"
@@ -45,21 +45,21 @@
                                 <div class="col-md-6">
                                     <form action="{{ route('dokter.periksa.store', $daftarpoli->id) }}" method="POST">
                                         @csrf
-                                        <div class="form-group row border-bottom pb-4 mx-1">
+                                        <div class="form-group row pb-3 mx-1">
                                             <label for="catatan" class="col-form-label">Catatan</label>
                                             <div class="col-sm-12">
                                                 <textarea class="form-control @error('catatan') is-invalid @enderror"
                                                     name="catatan" id="catatan" required>{{ old('catatan', $periksa ? $periksa->catatan : '') }}</textarea>
                                             </div>
                                         </div>                                      
-                                        <div class="form-group row border-bottom pb-4 mx-1">
+                                        <div class="form-group row pb-3 mx-1">
                                             <label for="biaya_periksa" class="col-form-label">Biaya Periksa</label>
                                             <div class="col-sm-12">
                                                 <input type="text" class="form-control @error('biaya_periksa') is-invalid @enderror" 
                                                     name="biaya_periksa" id="biaya_periksa" readonly>
                                             </div>
                                         </div>         
-                                        <div class="form-group row border-bottom pb-4 mx-1">
+                                        <div class="form-group row pb-3 mx-1">
                                             <label for="obat" class="col-form-label">Obat</label>
                                             <div class="col-sm-12">
                                                 <select class="form-control select2 @error('obat') is-invalid @enderror" name="obat[]" id="obat" multiple>
@@ -77,15 +77,14 @@
                                                 @enderror
                                             </div>
                                         </div> 
-                                        <div class="d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-2">
-                                                Simpan
-                                            </button>
-                                            <a href="{{ route('dokter.periksa.index') }}" class="btn btn-secondary shadow-sm">
+                                        <div class="d-flex justify-content-end mt-4">
+                                             <a href="{{ route('dokter.periksa.index') }}" class="btn btn-secondary me-4" >
                                                 Batal
                                             </a>
+                                            <button type="submit" class="btn btn-primary me-4">
+                                                Simpan
+                                            </button>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
@@ -108,7 +107,7 @@
             });
 
             function hitungTotalHarga() {
-                let totalHarga = 0;
+                let totalHarga = 150000;
                 $('#obat').find('option:selected').each(function () {
                     let harga = $(this).data('harga');
                     totalHarga += parseFloat(harga);

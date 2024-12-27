@@ -8,7 +8,7 @@
         <div class="d-flex align-items-end row">
           <div class="col-sm-7">
             <div class="card-body">
-              <h5 class="card-title text-primary">Selamat Datang Dokter Poli {{ Auth::user()->nama }} 🎉</h5>
+              <h5 class="card-title text-primary">Selamat Datang Dokter  {{ $dokter->poli->nama_poli }}  {{$dokter->nama}}🎉</h5>
               <p class="mb-4">Selamat bertugas dan <span class="fw-bold">Semangat</span> dalam mengelola poliklinik UDINUS</p>
             </div>
           </div>
@@ -82,7 +82,6 @@
       </div>
     </div>
   </div>
-
   <!-- Tabel Data Pasien -->
   <div class="row">
     <div class="col-md-12">

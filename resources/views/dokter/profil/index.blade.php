@@ -1,7 +1,7 @@
 @extends('components.app')
 
 @push('title')
-    <title>Profil Dokter - Poliklinik Udinus</title>
+    <title>Profil Dokter</title>
 @endpush
 
 @push('styles')
@@ -23,7 +23,6 @@
             <div class="col-md-12">
                 <ul class="nav nav-pills flex-column flex-md-row mb-3">
                 </ul>
-
                 <!-- Profil Dokter -->
                 <div class="card mb-4">
                     <h5 class="card-header">Ubah Profil</h5>
@@ -40,7 +39,6 @@
                                         </div>
                                     @enderror
                                 </div>
-
                                 <div class="mb-3 col-md-6">
                                     <label for="no_hp" class="col-form-label">No HP<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" id="no_hp" value="{{ old('no_hp', $dokter->no_hp) }}" required>
@@ -95,7 +93,6 @@
                                     </div>
                                 @enderror
                             </div>
-
                             <div class="mb-3">
                                 <label for="new_password" class="form-label">Password Baru<span class="text-danger">*</span></label>
                                 <input type="password" id="new_password" name="new_password" class="form-control @error('new_password') is-invalid @enderror" required>
@@ -105,7 +102,6 @@
                                     </div>
                                 @enderror
                             </div>
-
                             <div class="mt-2">
                                 <button type="submit" class="btn btn-primary">Ubah Password</button>
                             </div>

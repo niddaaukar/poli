@@ -29,31 +29,7 @@ class RiwayatController extends Controller
         return view('pasien.riwayat.index', compact('pasien', 'polis', 'riwayats'));
     }
 
-    // Menyimpan data pendaftaran pemeriksaan poli
-    public function store(Request $request)
-    {
-        // Validasi data yang diterima dari form
-        $request->validate([
-            'poli' => 'required|exists:polis,id',   // Poli yang dipilih harus ada di tabel poli
-            'tanggal' => 'required|date',            // Tanggal pemeriksaan harus berupa tanggal
-            'jadwal' => 'required|exists:jadwal_periksa,id', // Jadwal pemeriksaan harus ada
-            'keluhan' => 'required|string',          // Keluhan harus diisi dengan string
-        ]);
-
-        // Menyimpan data pendaftaran pemeriksaan poli untuk pasien
-        DaftarPoli::create([
-            'id_pasien' => auth()->guard('pasien')->id(), // ID pasien yang sedang login
-            'id_poli' => $request->poli,                   // ID poli yang dipilih
-            'tanggal' => $request->tanggal,               // Tanggal pemeriksaan
-            'id_jadwal' => $request->jadwal,             // ID jadwal pemeriksaan
-            'keluhan' => $request->keluhan,               // Keluhan pasien
-            'status' => 'belum_periksa',                  // Status awal pendaftaran adalah 'belum_periksa'
-        ]);
-
-        // Redirect kembali ke halaman sebelumnya dengan pesan sukses
-        return redirect()->back()->with('success', 'Riwayat pemeriksaan berhasil ditambahkan.');
-    }
-
+    
     // Mendapatkan jadwal pemeriksaan berdasarkan poli dan hari
     public function getJadwal($id_poli, $hari)
     {
@@ -70,35 +46,44 @@ class RiwayatController extends Controller
         return response()->json($jadwals);
     }
 
-    // Pendaftaran pemeriksaan poli dengan validasi
     public function daftarPoli(Request $request)
     {
-        // Validasi input dari form pendaftaran
         $request->validate([
-            'poli' => 'required|exists:poli,id',    // Poli yang dipilih harus ada di tabel poli
-            'tgl_periksa' => 'required|date|after:today|before_or_equal:' . now()->addDays(30)->toDateString(), // Tanggal pemeriksaan harus di masa depan, maksimal 30 hari ke depan
-            'jadwal' => 'required|exists:jadwal_periksa,id', // Jadwal yang dipilih harus ada
-            'keluhan' => 'required|string|max:255',  // Keluhan harus diisi dengan maksimal 255 karakter
+            'poli' => 'required|exists:poli,id',
+            'tgl_periksa' => 'required|date|after:today|before_or_equal:' . now()->addDays(30)->toDateString(),
+            'jadwal' => 'required|exists:jadwal_periksa,id',
+            'keluhan' => 'required|string|max:255',
         ]);
 
-        // Mendapatkan data pasien yang sedang login
         $pasien = auth()->guard('pasien')->user();
 
-        // Mendapatkan nomor antrian terakhir untuk jadwal dan tanggal periksa yang sama, dan menambahkannya dengan 1
+        // Cek apakah pasien sudah mendaftar pada jadwal dan tanggal yang sama
+        $existingEntry = DaftarPoli::where('id_pasien', $pasien->id)
+            ->where('id_jadwal', $request->jadwal)
+            ->where('tgl_periksa', $request->tgl_periksa)
+            ->exists();
+
+        if ($existingEntry) {
+            return redirect()->back()->with([
+                'message' => 'Anda sudah terdaftar untuk jadwal ini pada tanggal tersebut.',
+                'alert-type' => 'error'
+            ]);
+        }
+
+        // Hitung antrian saat ini
         $noAntrian = DaftarPoli::where('id_jadwal', $request->jadwal)
             ->where('tgl_periksa', $request->tgl_periksa)
             ->max('no_antrian') + 1;
 
-        // Menyimpan data pendaftaran pemeriksaan poli
+        // Buat pendaftaran baru
         DaftarPoli::create([
-            'id_pasien' => $pasien->id,   // ID pasien yang sedang login
-            'id_jadwal' => $request->jadwal,  // ID jadwal pemeriksaan
-            'tgl_periksa' => $request->tgl_periksa,  // Tanggal pemeriksaan
-            'keluhan' => $request->keluhan,  // Keluhan pasien
-            'no_antrian' => $noAntrian,     // Nomor antrian untuk pasien
+            'id_pasien' => $pasien->id,
+            'id_jadwal' => $request->jadwal,
+            'tgl_periksa' => $request->tgl_periksa,
+            'keluhan' => $request->keluhan,
+            'no_antrian' => $noAntrian,
         ]);
 
-        // Redirect ke halaman riwayat dengan pesan sukses
         return redirect()->route('pasien.riwayat.index')->with([
             'message' => 'Pendaftaran berhasil!',
             'alert-type' => 'success'

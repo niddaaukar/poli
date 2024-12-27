@@ -1,7 +1,12 @@
+
 @extends('components.app')
+@push('title')
+    <title>Jadwal Periksa Dokter</title>
+@endpush
 @section('content')
     <div class="container mt-5">
         <h1 class="mb-4">Jadwal Periksa</h1>
+        @include('components.alert')
         <!-- Wrapper Card -->
         <div class="card shadow">
             <div class="card-header bg-primary">
@@ -86,13 +91,12 @@
                 </div>
             </div>
         </div>
-
-        <!-- Modal Tambah Slot -->
+        <!-- Modal Tambah Jadwal -->
         <div class="modal fade" id="addSlotModal" tabindex="-1" aria-labelledby="addSlotModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addSlotModalLabel">Tambah Slot Jadwal</h5>
+                        <h5 class="modal-title" id="addSlotModalLabel">Tambah Jadwal</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -119,3 +123,35 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+<script>
+        $(document).ready(function() {
+            var hiddenInput = $('#hari'); // Mendapatkan elemen input tersembunyi dengan id 'hari'
+
+            // Ambil teks dari tab yang aktif dan hilangkan spasi di sekitar teks
+            var activeTabText = $('.nav-link.active').text().trim();
+
+            // Menggunakan regex untuk mencari nama hari (Senin, Selasa, Rabu, dll) dalam teks tab aktif
+            var day = activeTabText.match(/Senin|Selasa|Rabu|Kamis|Jumat|Sabtu|Minggu/);
+
+            // Jika nama hari ditemukan, set nilai input tersembunyi dengan nama hari tersebut
+            if (day) {
+                hiddenInput.val(day[0]); // Menyimpan nama hari di input tersembunyi
+            }
+
+            // Ketika tab berubah, perbarui nilai input tersembunyi dengan nama hari baru
+            $('.nav-link').on('shown.bs.tab', function() {
+                var newActiveTabText = $(this).text().trim(); // Ambil teks dari tab yang baru aktif
+
+                // Menggunakan regex untuk mencari nama hari di tab yang baru aktif
+                var newDay = newActiveTabText.match(/Senin|Selasa|Rabu|Kamis|Jumat|Sabtu|Minggu/);
+
+                // Jika nama hari baru ditemukan, update nilai input tersembunyi dengan nama hari baru
+                if (newDay) {
+                    hiddenInput.val(newDay[0]); // Mengupdate nilai input tersembunyi
+                }
+            });
+        });
+
+    </script>
+@endpush

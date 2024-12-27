@@ -1,7 +1,7 @@
 @extends('components.app')
 @include('frontend.components.navbar-homepage')
 @push('title')
-    <title>Riwayat Pemeriksaan - Poliklinik Udinus</title>
+    <title>Riwayat Pemeriksaan</title>
 @endpush
 
 @push('styles')

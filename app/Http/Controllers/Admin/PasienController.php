@@ -134,8 +134,8 @@ class PasienController extends Controller
     public function generateNoRM()
     {
         // Ambil tahun dan bulan sekarang
-        $tahun = Carbon::now()->year; // Tahun saat ini (misalnya 2024)
-        $bulan = Carbon::now()->month; // Bulan saat ini (misalnya 11 untuk November)
+        $tahun = Carbon::now()->year; 
+        $bulan = Carbon::now()->month; 
 
         // Ambil jumlah pasien yang terdaftar pada bulan dan tahun ini
         $jumlah_pasien = Pasien::whereYear('created_at', $tahun)

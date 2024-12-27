@@ -46,12 +46,12 @@ Gunakan data berikut untuk mengakses aplikasi sesuai dengan peran:
 
 # Panduan Instalasi Project Poliklinik 
 
-## 1. Instalasi Dependensi PHP
-Instal semua dependensi PHP menggunakan Composer:
 ```bash
+1. Instal semua dependensi PHP menggunakan Composer
 composer install
 
-2. Instal semua dependensi frontend menggunakan npm:
+
+2. Instal semua dependensi frontend menggunakan npm
 perintah
 npm install
 
@@ -73,7 +73,7 @@ perintah :
 php artisan migrate --seed
 
 6. Menjalankan Server
-Setelah semuanya terinstal dan terkonfigurasi, jalankan server pengembangan Laravel menggunakan perintah berikut:
+Setelah semuanya terinstal dan terkonfigurasi, jalankan server pengembangan Laravel menggunakan perintah berikut
 perintah : 
 php artisan serve
 
